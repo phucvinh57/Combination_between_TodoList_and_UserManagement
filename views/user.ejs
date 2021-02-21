@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/navigation-bar.css">
+    <link rel="stylesheet" href="/stylesheets/sidebar.css">
+    <title><%= title %> </title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top justify-content-between" style="height: 50px;">
+        <!-- Navbar content -->
+        <div class="navbar-nav" style="margin-top: 7px;">
+            <div class="navbar-brand">
+                <input type="checkbox" id="check">
+                <label for="check" id="sidebar-btn" >
+                    <i class="fas fa-bars"></i>
+                </label>
+                To-do List
+            </div>
+            <form class="search-box">
+                <input type="text" name="" placeholder="Type to search" class="search-txt">
+                <a href="#" class="search-btn">
+                    <i class="fas fa-search"></i>
+                </a>
+            </form>
+        </div>
+        
+        <div class="navbar-nav">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="user-btn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="material-icons">account_circle</span>
+                    <span style="margin-left: 5px;">Phuc Vinh</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-btn">
+                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Log out</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="sidebar" style="left: -220px;">
+            <a href="#" class="link">
+                <span class="material-icons">home</span>
+                <span>Home</span>
+            </a>
+            <div>
+                <a href="#" class="link" id="drop">
+                    <span class="material-icons">dns</span>
+                    <span>Lists</span>
+                    <span class="material-icons" style="margin-left: 70px;" id="arrow_drop_down">arrow_drop_down</span>
+                </a>
+                <ul id="lists" style="display: none;">
+                    <li><a href="#" class="list"><span class="material-icons">receipt_long</span><span>Node.js</span></a></li>
+                    <li><a href="#" class="list"><span class="material-icons">receipt_long</span><span>Bootstrap</span></a></li>
+                    <li><a href="#" class="list"><span class="material-icons">receipt_long</span><span>jQuery</span></a></li>
+                    <li><a href="#" class="list"><span class="material-icons">receipt_long</span><span>Express.js</span></a></li>
+                </ul>
+            </div>
+            <a href="#" class="link">
+                <span class="material-icons">assignment_turned_in</span>
+                <span>Completed List</span>
+            </a>
+        </div>
+        <form action="" method="POST" class="content">
+            <div id="left">
+                <div id="profile">
+                    <div class="title">
+                        <span>Profile</span>
+                    </div>
+                    <div class="input-form">
+                        <label for="name">Name:</label><br>
+                        <input type="text" name="name" id="name" value="Nguyen Phuc Vinh">
+                    </div>
+                    <div class="input-form">
+                        <label for="phone-number">Phone number:</label><br>
+                        <input type="number" name="phoneNumber" id="phone-number" value="0373395726">
+                    </div>
+                    <div class="input-form">
+                        <label for="email">Email:</label><br>
+                        <input type="email" name="email" id="email" value="nguyenphucvinh05072001@gmail.com">
+                    </div>
+                    <br>
+                </div>
+                <div id="change-password">
+                    <div class="title">
+                        <span>Change Password</span>
+                    </div>
+                    <div class="input-form">
+                        <label for="old-password">Your old password:</label><br>
+                        <input type="password" name="oldPassword" id="old-password" placeholder="**********">
+                    </div>
+                    <div class="input-form">
+                        <label for="new-password">New password:</label><br>
+                        <input type="password" name="newPassword" id="new-password" placeholder="**********">
+                    </div>
+                    <div class="input-form">
+                        <label for="retype-new-password">Retype new password:</label><br>
+                        <input type="password" name="retypeNewPassword" id="retype-new-password" placeholder="**********">
+                    </div>
+                </div>
+            </div>
+            <div id="right">
+                <div class="title"><span>Avatar</span></div>
+                <div id="avatar">
+                    <label for="input-img">
+                        <img src="images/img_avatar.png" alt="Avatar" class="avatar">
+                        <!-- <span class="material-icons" id="camera-icon">camera_alt</span> -->
+                    </label>
+                    <input type="file" id="input-img" style="display: none;">
+                </div>
+                <div class="input-form">
+                    <label for="bio">Bio:</label><br>
+                    <textarea name="bio" id="bio">Some description about yourself</textarea>
+                </div>
+                <div id="right-footer">
+                    <button type="button" class="btn btn-dark" style="background: transparent;">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="/javascripts/sidebar.js"></script>
+</body>
+</html>

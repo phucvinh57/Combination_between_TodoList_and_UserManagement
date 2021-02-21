@@ -1,0 +1,64 @@
+/* Search bar */
+.search-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: whitesmoke;
+    position: relative;
+    height: 40px;
+    border-radius: 40px;
+    padding: 0;
+}
+.search-box:hover>.search-txt {
+    width: 300px;
+    margin-left: 20px;
+}
+.search-box:hover>.search-btn {
+    color: whitesmoke;
+    background: #1a1a1a;
+}
+.search-btn {
+    color: black;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.search-txt {
+    border: none;
+    background: none;
+    outline: none;
+    float: left;
+    color: black;
+    padding: 0;
+    font-size: 16px;
+    width: 0;
+    transition: 0.4s;
+    overflow: hidden;
+}
+
+/* Add new list */
+#add-item-btn {
+    display: flex;
+    font-weight: bold;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#user-btn {
+    display: flex;
+    font-weight: bold;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+}
+#user-btn:hover {
+    background-color: #2c3136;
+}
