@@ -111,15 +111,15 @@
             <div id="right">
                 <div class="title"><span>Avatar</span></div>
                 <div id="avatar">
-                    <label for="input-img">
-                        <img src="images/img_avatar.png" alt="Avatar" class="avatar">
-                        <!-- <span class="material-icons" id="camera-icon">camera_alt</span> -->
+                    <img src="images/img_avatar.png" alt="Avatar" class="avatar" id="img-avatar">
+                    <label for="input-img" id="upload-btn" style="display: none;">
+                        <span class="material-icons" id="camera-icon">camera_alt</span>
                     </label>
-                    <input type="file" id="input-img" style="display: none;">
                 </div>
+                <input type="file" id="input-img" style="display: none;">
                 <div class="input-form">
                     <label for="bio">Bio:</label><br>
-                    <textarea name="bio" id="bio">Some description about yourself</textarea>
+                    <textarea name="bio" id="bio">Some description about yourself ...</textarea>
                 </div>
                 <div id="right-footer">
                     <button type="button" class="btn btn-dark" style="background: transparent;">Cancel</button>
@@ -133,5 +133,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/avatar.js"></script>
 </body>
 </html>

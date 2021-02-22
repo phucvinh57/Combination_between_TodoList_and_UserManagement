@@ -96,6 +96,7 @@ label {
 }
 #avatar {
     text-align: center;
+
     border-bottom: 2px solid white;
     margin-bottom: 18px;
 }
@@ -103,6 +104,21 @@ label {
     width: 250px;
     border-radius: 50%;
     margin: 15px;
+}
+#camera-icon {
+    font-size: 100px;
+}
+#img-avatar {
+    position: relative;
+}
+#upload-btn {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.8);
+    top: 45.8%;
+    left: 73.8%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    z-index: 10;
 }
 #right-footer {
     display: flex;

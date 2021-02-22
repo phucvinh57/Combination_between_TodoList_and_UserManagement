@@ -7,13 +7,14 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Add the evo-calendar.css for styling -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css"/>
 
-    <link rel="stylesheet" href="/stylesheets/home.css">
     <link rel="stylesheet" href="/stylesheets/navigation-bar.css">
+    <link rel="stylesheet" href="/stylesheets/home.css">
     <link rel="stylesheet" href="/stylesheets/sidebar.css">
-    <title><%= title %></title>
+    <title><%= title %> </title>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top justify-content-between" style="height: 50px;">
         <!-- Navbar content -->
@@ -33,12 +34,12 @@
             </form>
         </div>
         <div class="navbar-nav">
-            <a id="add-item-btn" class="btn btn-success" href="#" role="button">
+            <button id="add-item-btn" class="btn btn-success" href="#">
                 <span style="margin-right: 5px;">New task</span>
                 <span class="material-icons">
                     playlist_add
                 </span>
-            </a>
+            </button>
         </div>
         <div class="navbar-nav">
             <div class="dropdown">
@@ -53,7 +54,7 @@
             </div>
         </div>
     </nav>
-    
+
     <div class="main">
         <div class="sidebar" style="left: -220px;">
             <a href="#" class="link">
@@ -67,7 +68,7 @@
                     <span class="material-icons" style="margin-left: 70px;" id="arrow_drop_down">arrow_drop_down</span>
                 </a>
                 <ul id="lists" style="display: none;">
-                    <li style="background-color: #2c3136;"><a href="#" class="list"><span class="material-icons">receipt_long</span><span>Node.js</span></a></li>
+                    <li><a href="#" class="list"><span class="material-icons">receipt_long</span><span>Node.js</span></a></li>
                     <li><a href="#" class="list"><span class="material-icons">receipt_long</span><span>Bootstrap</span></a></li>
                     <li><a href="#" class="list"><span class="material-icons">receipt_long</span><span>jQuery</span></a></li>
                     <li><a href="#" class="list"><span class="material-icons">receipt_long</span><span>Express.js</span></a></li>
@@ -79,96 +80,42 @@
             </a>
         </div>
         <div class="content">
-            <table>
-                <tr>
-                    <th></th>
-                    <th> 
-                        <div class="label">
-                            <span>Deadline</span>
-                            <span class="material-icons">import_export</span>
-                        </div>
-                    </th>
-                    <th>
-                        <div class="label">
-                            <span>Priority</span>
-                            <span class="material-icons">import_export</span>
-                        </div>
-                    </th>
-                    <th>Tag</th>
-                </tr>
-                <tr class="item">
-                    <td>
-                        <input type="checkbox" name="" id="" class="choose-item">
-                        <span class="item-label">Listening</span>
-                    </td>
-                    <td>20/2/2021</td>
-                    <td>
-                        <div class="label flag">
-                            <span class="material-icons">tour</span>
-                            <span>High</span>
-                        </div>
-                    </td>
-                    <td>xxxx</td>
-                </tr>
-                <tr class="item">
-                    <td>
-                        <input type="checkbox" name="" id="" class="choose-item">
-                        <span class="item-label">Listening</span>
-                    </td>
-                    <td>20/2/2021</td>
-                    <td>
-                        <div class="label flag">
-                            <span class="material-icons">tour</span>
-                            <span>High</span>
-                        </div>
-                    </td>
-                    <td>xxxx</td>
-                </tr>
-                <tr class="item">
-                    <td>
-                        <input type="checkbox" name="" id="" class="choose-item">
-                        <span class="item-label">Listening</span>
-                    </td>
-                    <td>20/2/2021</td>
-                    <td>
-                        <div class="label flag">
-                            <span class="material-icons">tour</span>
-                            <span>High</span>
-                        </div>
-                    </td>
-                    <td>xxxx</td>
-                </tr>
-            </table>
+            <!-- To do -->
+            <div id="calendar"></div>
         </div>
     </div>
-
-    <div id="item-info" style="display: none;">
-        <span id="close" title="Close Modal">&times;</span>
-        <div id="modal-header" style="display: none;">New Task</div>
-        <div class="group-info">
-            <label for="task-name">Task name:</label><br>
-            <input type="text" value="Task name" id="task-name">
-        </div>
-        <div class="group-info">
-            <label for="due-date">Deadline:</label><br>
-            <input type="date" name="deadline" id="due-date">
-        </div>
-        <div class="group-info">
-            <label for="description">Description:</label><br>
-            <textarea type="text" id="description">Description Here</textarea>
-        </div>
-        <div class="footer">
-            <button type="button" class="btn btn-dark" id="cancel-box">Cancel</button>
-            <button type="button" class="btn btn-success" id="save-box">Save</button>
-        </div>
-    </div>
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js">
-        
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="/javascripts/home.js"></script>
+    <!-- Add the evo-calendar.js for.. obviously, functionality! -->
+    <script src="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/js/evo-calendar.min.js"></script>
+
     <script src="/javascripts/sidebar.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $("#calendar").evoCalendar({
+                calendarEvents: [
+                    {
+                        id: 'bHay68s', // Event's ID (required)
+                        name: "New Year", // Event name (required)
+                        date: "January/1/2020", // Event date (required)
+                        type: "holiday", // Event type (required)
+                        description: "DM WTF ???",
+                        everyYear: true // Same event every year (optional)
+                    },
+                    {
+                        name: "Vacation Leave",
+                        badge: "02/13 - 02/15", // Event badge (optional)
+                        date: ["February/13/2020", "February/15/2020"], // Date range
+                        description: "Vacation leave for 3 days.", // Event description (optional)
+                        type: "event",
+                        color: "#63d867" // Event custom color (optional)
+                    }
+                ]
+            });
+            $("#calendar").evoCalendar('setTheme', 'Midnight Blue')
+        })
+    </script>
 </body>
 </html>

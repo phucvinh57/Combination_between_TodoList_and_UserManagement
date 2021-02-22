@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add the evo-calendar.css for styling -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css"/>
+    <title>Document</title>
+</head>
+<body>
+    <div id="calendar"></div>
+    <!-- Add jQuery library (required) -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+
+    <!-- Add the evo-calendar.js for.. obviously, functionality! -->
+    <script src="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/js/evo-calendar.min.js"></script>
+    
+    <script>
+        $("#calendar").evoCalendar({
+            theme: 'Royal Navy',
+            calendarEvents: [
+                {
+                    id: 'bHay68s', // Event's ID (required)
+                    name: "New Year", // Event name (required)
+                    date: "January/1/2020", // Event date (required)
+                    type: "holiday", // Event type (required)
+                    description: "DM WTF ???",
+                    everyYear: true // Same event every year (optional)
+                },
+                {
+                    id: 'awxS68s', // Event's ID (required)
+                    name: "New year 2", // Event name (required)
+                    date: "January/1/2020", // Event date (required)
+                    type: "holiday", // Event type (required)
+                    description: "@@#^!@%#&%*&%",
+                    everyYear: true // Same event every year (optional)
+                }
+            ]
+        });
+    </script>
+</body>
+</html>

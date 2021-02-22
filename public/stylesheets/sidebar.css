@@ -47,6 +47,9 @@
 }
 .sidebar li {
     list-style-type: none;
+    padding: 5px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
 }
 
 label #sidebar-btn {

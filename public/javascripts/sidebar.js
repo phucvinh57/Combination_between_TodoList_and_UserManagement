@@ -10,15 +10,13 @@ var content = document.getElementsByClassName('content')[0];
 toggleBtn.addEventListener('change', function() {
     if(!this.checked) {
         sideBar.style.left = '-220px';
-        if(!show2) content.style.filter = 'blur(0px)';
+        content.style.filter = 'blur(0px)';
         btnImage.className = 'fas fa-bars';
-        show1 = false;
     }
     else {
         sideBar.style.left = '0';
         content.style.filter = 'blur(5px)';
         btnImage.className = 'fas fa-arrow-left';
-        show1 = true;
     }
 });
 
