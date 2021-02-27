@@ -21,6 +21,23 @@ var verifyToken = function(req, res, next) {
 
 var isAdmin = function(req, res, next) {
     //To do
+    connection.query(
+        'SELECT * FROM user_roles WHERE userId = ?',
+        [req.userId], 
+        function(err, result) {
+            connection.query(
+                'SELECT * FROM roles WHERE roleId = ?',
+                [result.roleId],
+                function(err, _result) {
+                    if(_result.name === 'admin'){
+                        next();
+                        return;
+                    }
+                    res.status(403).send({message: 'Require Admin Role!'});
+                }
+            );
+        }
+    );
 }
 
 const authJwt = {

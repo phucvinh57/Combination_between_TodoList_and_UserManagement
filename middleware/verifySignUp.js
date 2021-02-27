@@ -12,24 +12,24 @@ var checkDuplicateUsernameOrEmail = function(req, res, next) {
                     message: "Failed! Username is already in use!"
                 });
             }
-            return;
+            //Check duplicate email
+            connection.query(
+                'SELECT Email FROM users WHERE Email = ?',
+                [req.body.email],
+                function(err, results, fields) {
+                    if(results) {
+                        //To do
+                        res.status(400).send({
+                            message: "Failed! Email is already in use!"
+                        });
+                    }
+                    return;
+                }
+            );
+            next();
         }
     );
-    //Check duplicate email
-    connection.query(
-        'SELECT Email FROM users WHERE Email = ?',
-        [req.body.email],
-        function(err, results, fields) {
-            if(results) {
-                //To do
-                res.status(400).send({
-                    message: "Failed! Email is already in use!"
-                });
-            }
-            return;
-        }
-    );
-    next();
+    
 }
 
 const verifySignUp = {
