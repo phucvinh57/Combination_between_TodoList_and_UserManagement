@@ -1,7 +1,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Full-width input fields */
-input[name=uname], input[name=psw] {
+input[name=username], input[name=password] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

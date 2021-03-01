@@ -22,20 +22,6 @@
             </a>
         </div>
 
-        <!-- Account
-        <div class="navbar-nav dropdown">
-            <button type="button" class="dropdown-toggle nav-item" data-toggle="dropdown">
-                <i class='fas fa-user-circle'></i>
-                <strong>Nguyen Phuc Vinh</strong>
-                <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-right">
-                <li href="#" class="dropdown-item">Edit Profile</li>
-                <li href="#" class="dropdown-item">Change Password</li>
-                <li href="#" class="dropdown-item">Log Out</li>
-            </ul>
-        </div> -->
-
         <div class="navbar-nav">
             <a class="btn btn-dark" id="login-btn" role="button" style="color: #f1f1f1;">Log in</a>
             <a class="btn btn-success" href="http://localhost:3000/signup" role="button">Sign up</a>
@@ -43,17 +29,17 @@
     </nav>
 
     <div id="id01" class="modal">
-        <form class="modal-content animate" action="/action_page.php" method="post">
+        <form class="modal-content animate" action="/auth/login" method="POST">
             <div class="imgcontainer">
                 <span id="close" title="Close Modal">&times;</span>
-                <img src="images/img_avatar.png" alt="Avatar" class="avatar">
+                <img src="/images/img_avatar.png" alt="Avatar" class="avatar">
             </div>
             <div class="container">
-                <label for="uname"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
+                <label for="username"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username"  id="username" required>
             
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <label for="password"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" id="password" required>
                     
                 <button type="submit">Login</button>
                 <label>
