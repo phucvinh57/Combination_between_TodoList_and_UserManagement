@@ -23,7 +23,7 @@ var isAdmin = function (req, res, next) {
     //To do
     connection.query('SELECT * FROM user_roles WHERE userId = ?', [req.userId], function (err, user_role) {
         connection.query('SELECT * FROM roles WHERE roleId = ?', [user_role[0].roleId], function (err, role) {
-            if (role[0].name === 'admin') {
+            if (role[0].Name === 'admin') {
                 next();
                 return;
             }

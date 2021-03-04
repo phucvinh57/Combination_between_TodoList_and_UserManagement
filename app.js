@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
+var adminRouter = require('./routes/admin');
 
 const cors = require("cors");
 var corsOption = {
@@ -33,6 +34,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/auth', authRouter);
+app.use('/administrator', adminRouter);
 
 app.use(function(req, res, next) {
   res.header(

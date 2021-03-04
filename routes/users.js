@@ -17,7 +17,7 @@ router.get('/home', function(req, res, next) {
     controller.userAccess(req, res, 'home');
 });
 router.get('/', function(req, res, next) {
-    // authJwt.verifyToken(req, res, next)
+    authJwt.verifyToken(req, res, next);
     controller.userAccess(req, res, '');
 });
 
