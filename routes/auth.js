@@ -5,35 +5,16 @@ var controller = require('../controllers/auth.controller');
 var verifySignUp = require('../middleware/verifySignUp');
 
 /* Login */
-router.post('/login', function(req, res, next) {
-    if(req.isLoggedIn === true) {
-        res.redirect('/user');
-        return;
-    }
-    async function handlingAsync() {
-        var data = await controller.logIn(req, res);
-        res.render('user/home', {
-            title: 'Home'
-            // data: data
-        });
-    }
-    handlingAsync();
+router.post('/login', [controller.logIn], function(req, res, next) {
+    res.redirect('/user');
+    return;
 });
 /* Signup */
-router.post('/signup', function(req, res, next) {
-    if(req.isLoggedIn === true) {
-        res.redirect('/user');
-        return;
-    }
-    async function handlingAsync() {
-        await verifySignUp.checkDuplicateUsernameOrEmail(req, res);
-        let data = await controller.signUp(req, res);
-        req.isLoggedIn = true;
-        res.render('user/home', {
-            title: 'Home'
-        })
-    }
-    handlingAsync();
+router.post('/signup', [verifySignUp.checkDuplicateUsernameOrEmail, controller.signUp],function(req, res, next) {
+    res.redirect('/user');
+    return;
 });
+/* Logout */
+router.post('/logout', controller.logOut);
 
 module.exports = router;
