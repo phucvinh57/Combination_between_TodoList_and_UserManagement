@@ -8,6 +8,7 @@
     flex-flow: column;
     transition: 0.4s;
     z-index: 1;
+    width: 220px;
 }
 .sidebar a[class='link'] {
     padding: 0 20px;
@@ -26,24 +27,6 @@
 }
 .sidebar span {
     margin-right: 7px;
-}
-.sidebar #lists {
-    margin: 0;
-    height: auto;
-    max-width: 100%;
-    transition: 0.3s;
-}
-.sidebar .list {
-    padding: 0 20px 0 0;
-    font-size: 14px;
-    font-weight: bold;
-    color: #fff;
-    text-decoration: none;
-    width: 100%;
-    line-height: 30px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
 }
 .sidebar li {
     list-style-type: none;

@@ -40,7 +40,9 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-btn">
                     <a class="dropdown-item" href="#">Profile</a>
-                    <a class="dropdown-item" href="#">Log out</a>
+                    <form action="/auth/logout" method="POST">
+                        <input class="dropdown-item" type="submit" value="Log out">
+                    </form>
                 </div>
             </div>
         </div>

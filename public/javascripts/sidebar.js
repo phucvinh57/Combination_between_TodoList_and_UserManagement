@@ -5,7 +5,7 @@ var dropIcon = document.getElementById('arrow_drop_down');
 var toggleBtn = document.getElementById('check');
 var btnImage = document.getElementsByClassName('fas fa-bars')[0];
 
-var content = document.getElementsByClassName('content')[0];
+var content = document.getElementsByClassName('main-content')[0];
 
 toggleBtn.addEventListener('change', function() {
     if(!this.checked) {
