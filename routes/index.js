@@ -7,14 +7,6 @@ router.get('/', function(req, res, next) {
         res.redirect('/user');
         return;
     }
-    res.render('index', { title: 'To-do List' });
-});
-router.get('/signup', function(req, res, next) {
-    console.log(req.isLoggedIn);
-    if(req.isLoggedIn === true) {
-        res.redirect('/user');
-        return;
-    }
-    res.render('signup', { title: 'Signup' });
+    res.render('index', { title: 'Event App' });
 });
 module.exports = router;

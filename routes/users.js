@@ -2,14 +2,7 @@ var express = require('express');
 var router = express.Router();
 var authJwt = require('../middleware/authJwt');
 
-/* GET users listing. */
-router.get('/profile', [authJwt.verifyToken], function (req, res, next) {
-    if (req.role === 'user') {
-        res.render('user/profile', { title: 'Profile' });
-    } else {
-        res.status(403).send({ message: 'Require user role' })
-    }
-});
+// View user's list of event
 router.get('/lists', [authJwt.verifyToken], function (req, res, next) {
     if (req.role === 'user') {
         res.render('user/lists', { title: 'Lists' });
@@ -17,6 +10,7 @@ router.get('/lists', [authJwt.verifyToken], function (req, res, next) {
         res.status(403).send({ message: 'Require user role' })
     }
 });
+// View event on calendar
 router.get('/home', [authJwt.verifyToken], function (req, res, next) {
     if (req.role === 'user') {
         res.render('user/home', { title: 'Home' });
@@ -27,6 +21,13 @@ router.get('/home', [authJwt.verifyToken], function (req, res, next) {
 router.get('/', [authJwt.verifyToken], function (req, res, next) {
     if (req.role === 'user') {
         res.render('user/home', { title: 'Home' });
+    } else {
+        res.status(403).send({ message: 'Require user role' })
+    }
+});
+router.get('/setting', [authJwt.verifyToken], function (req, res, next) {
+    if (req.role === 'user') {
+        res.render('user/setting', { title: 'Setting' });
     } else {
         res.status(403).send({ message: 'Require user role' })
     }
