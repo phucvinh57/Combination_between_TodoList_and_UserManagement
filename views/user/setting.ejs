@@ -73,14 +73,8 @@
         </div>
         <div class="main-content">
             <div class="leftbox">
-                <nav>
-                    <a href="#" class="tab">
-                        <i class="fa fa-user"></i>
-                    </a>
-                    <a href="#" class="tab">
-                        <i class="fa fa-user"></i>
-                    </a>
-                    <a href="#" class="tab">
+                <nav id="nav">
+                    <a href="#" class="tab active">
                         <i class="fa fa-user"></i>
                     </a>
                     <a href="#" class="tab">
@@ -91,6 +85,37 @@
                     </a>
                 </nav>
             </div>
+            <div class="rightbox">
+                <form class="content" action="/adas">
+                    <h1>Personal Info</h1>
+                    <label for="name">Name:</label><br>
+                    <input type="text" id="name" class="input" value="Nguyễn Phúc Vinh">
+                    <label for="birthday">Birthday:</label><br>
+                    <input type="date" class="input" id="birthday">
+                    <label for="email">Email:</label><br>
+                    <input type="email" class="input" id="email">
+                    <div class="edit-btns">
+                        <button type="button" class="btn btn-light">Cancel</button>
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </div>
+                </form>
+                <form class="content" style="display: none;">
+                    <h1>Change password</h1>
+                    <label for="old-password">Confirm your password:</label><br>
+                    <input type="password" id="old-password" class="input">
+                    <label for="new-password">New password:</label><br>
+                    <input type="password" class="input" id="new-password">
+                    <label for="retype-password">Retype new password:</label><br>
+                    <input type="password" class="input" id="retype-password">
+                    <div class="edit-btns">
+                        
+                        <button type="submit" class="btn btn-info">Save</button>
+                    </div>
+                </form>
+                <form class="content" style="display: none;">
+                    <div style="color: rgb(11, 104, 104); margin: 20px; padding-right: 20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam deserunt quos voluptatibus facilis sapiente inventore illum, id ipsam autem, cum in minus? Ullam in beatae ipsum aspernatur rem fugit delectus!</div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -98,6 +123,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/javascripts/sidebar.js"></script>
+    <script src="/javascripts/setting.js"></script>
 </body>
 
 </html>
