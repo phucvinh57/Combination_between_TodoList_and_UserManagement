@@ -1,0 +1,155 @@
+#event-form {
+    position: fixed;
+    z-index: 100;
+    background-color: white;
+    width: 95%;
+    min-height: 88vh;
+    top: 60px;
+    color: black;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 20px;
+    border-radius: 10px;
+    border: 0.5px solid black;
+    margin-bottom: 50px;
+    overflow: visible;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row;
+}
+
+#left-form {
+    width: 40%;
+    margin-top: 30px;
+}
+.form-attribute {
+    margin-bottom: 10px;
+    font-size: 14px;
+    position: relative;
+    width: 100%;
+}
+.form-attribute label {
+    font-weight: 600;
+    margin-bottom: -5px;
+    color: gray;
+}
+.form-attribute input, .form-attribute select {
+    width: 100%;
+    padding: 5px 0px;
+    border: none;
+    border-bottom: 1px solid #19b3d3;
+    outline: none;
+}
+
+#event-name {
+    font-weight: 600;
+    font-size: 25px;
+    margin-bottom: 20px;
+    width: 100%;
+    color: rgb(24, 109, 109);
+    border: none;
+    border-bottom: 2px solid #666666;
+}
+.event-header label{
+    font-weight: 600;
+    font-size: 14px;
+    color: black;
+}
+#close-event-btn {
+    font-size: 30px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: grey;
+    font-weight: bold;
+}
+#close-event-btn:hover {
+    cursor: pointer;
+    color: rgb(255, 61, 61);
+}
+
+#right-form {
+    position: relative;
+    width: 55%;
+    margin-top: 20px;
+}
+
+.form-attribute textarea {
+    width: 100%;
+    border: 1.5px solid black;
+    place-content: 'Describe your event here ...';
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#submit {
+    position: absolute;
+    font-size: 16px;
+    background: #ff4c2c;
+    color: white;
+    padding: 7px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    bottom: 20px;
+    right: 20px;
+}
+
+#select {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#list-attendees {
+    width: 47%;
+}
+.title {
+    width: 100%;
+    background-color: #1899b3;
+    color: white;
+    font-size: 18px;
+    padding: 2px 0px;
+    text-align: center;
+    font-weight: bold;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+#list-times {
+    width: 47%;
+}
+.person {
+    padding: 0px 2px;
+}
+.person:hover {
+    background-color: rgba(245, 245, 245, 0.952);
+}
+
+.time {
+    padding: 0px 2px;
+}
+.time:hover {
+    background-color: rgba(245, 245, 245, 0.952);
+}
+
+#time-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#time-input span {
+    background-color: transparent;
+    font-size: 30px;
+    border-bottom-right-radius: 5px;
+}
+#time-input span:hover {
+    background-color: rgb(209, 207, 207);
+    cursor: pointer;
+}
+#time-input input {
+    width: 90%;
+}

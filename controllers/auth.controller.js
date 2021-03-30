@@ -33,7 +33,6 @@ var signUp = function (req, res, next) {
     });
 }
 var logIn = function (req, res, next) {
-    console.log('Handling ...');
     connection.query('SELECT * FROM users WHERE Username = ?', [req.body.username], function (err, user) {
         if (user.length === 0) {
             console.log('Username does not exist!');
@@ -47,7 +46,9 @@ var logIn = function (req, res, next) {
             return;
         }
         connection.query('SELECT * FROM user_roles WHERE userID = ?', [user[0].ID], function (err, user_role) {
+            console.log(user_role[0]);
             connection.query('SELECT * FROM roles WHERE ID = ?', [user_role[0].roleId], function (err, role) {
+                console.log(role[0]);
                 var token = jwt.sign(
                     {
                         id: user[0].ID,
@@ -57,13 +58,7 @@ var logIn = function (req, res, next) {
                     { expiresIn: expiresToken }
                 );
                 res.cookie('token', token);
-                //Data
-                // resolve({
-                //     id: user[0].ID,
-                //     username: user[0].Username,
-                //     email: user[0].Email,
-                //     role: role[0].Name,
-                // });
+                req.role = role[0].Name;
                 next();
             });
         });

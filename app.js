@@ -9,15 +9,13 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var adminRouter = require('./routes/admin');
+var moderatorRouter = require('./routes/moderator');
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -29,6 +27,7 @@ app.use('/', indexRouter);
 app.use('/user', usersRouter);
 app.use('/auth', authRouter);
 app.use('/admin', adminRouter);
+app.use('/mod', moderatorRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
