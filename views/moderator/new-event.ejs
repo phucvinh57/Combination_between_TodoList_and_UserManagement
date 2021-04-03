@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="/stylesheets/lists.css">
     <link rel="stylesheet" href="/stylesheets/navigation-bar.css">
     <link rel="stylesheet" href="/stylesheets/sidebar.css">
+    <link rel="stylesheet" href="/stylesheets/event.css">
     <title>
         <%= title %>
     </title>
@@ -30,14 +31,7 @@
             </div>
 
         </div>
-        <div class="navbar-nav">
-            <a role="button" id="add-item-btn" class="btn btn-success" href="http://localhost:3000/mod/event/create">
-                <span style="margin-right: 5px;">New Event</span>
-                <span class="material-icons">
-                    playlist_add
-                </span>
-            </a>
-        </div>
+
         <div class="navbar-nav">
             <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="user-btn" data-toggle="dropdown"
@@ -61,7 +55,7 @@
                 <span class="material-icons">home</span>
                 <span>Home</span>
             </a>
-            <a href="#" class="link" id="drop">
+            <a href="http://localhost:3000/mod/lists" class="link" id="drop">
                 <span class="material-icons">dns</span>
                 <span>Lists</span>
             </a>
@@ -71,101 +65,44 @@
             </a>
         </div>
         <div class="main-content">
-            <table id="event-table" class="display">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Event's name</th>
-                        <th>Responsible</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Stage</th>
-                        <th>Expect Attendees</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1915940</td>
-                        <td>Họp IT</td>
-                        <td>Nguyễn Tấn Đạt</td>
-                        <td>2021/16/03</td>
-                        <td>2011/16/03</td>
-                        <td>Cancel</td>
-                        <td>15</td>
-                    </tr>
-                    <tr>
-                        <td>1911560</td>
-                        <td>Họp Cơ Khí</td>
-                        <td>Nguyễn Minh Thành</td>
-                        <td>2021/16/03</td>
-                        <td>2011/19/03</td>
-                        <td>Upcoming</td>
-                        <td>15</td>
-                    </tr>
-                    <tr>
-                        <td>1912715</td>
-                        <td>Họp giao ban</td>
-                        <td>Huỳnh Hoàng Kha</td>
-                        <td>2021/16/03</td>
-                        <td>2011/18/03</td>
-                        <td>Upcoming</td>
-                        <td>15</td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>ID</th>
-                        <th>Event's name</th>
-                        <th>Responsible</th>
-                        <th>Start Date</th>
-                        <th>End Date</th>
-                        <th>Stage</th>
-                        <th>Expect Attendees</th>
-                    </tr>
-                </tfoot>
-            </table>
-        </div>
-    </div>
-    <form class="event-form" style="display: none;" action="/create/event" method="POST">
-        <div class="left-form">
-            <div class="event-header">
-                <label for="event-name">Event Name</label>
-                <input type="text" id="event-name" name="eventname" value="New Event">
-            </div>
-            <div class="form-attribute">
-                <label for="start-time">Start Time</label>
-                <input type="datetime-local" name="startTime" id="start-time">
-            </div>
-            <div class="form-attribute">
-                <label for="end-time">End Time</label>
-                <input type="datetime-local" name="endTime" id="end-time">
-            </div>
-            <div class="form-attribute">
-                <label for="location">Location</label>
-                <input type="url" name="location" id="location">
-            </div>
-            <div class="form-attribute">
-                <label for="scale">Scale</label>
-                <select name="" id="">
-                    <option value="cokhi">Team cơ khí</option>
-                    <option value="dien">Team Điện</option>
-                    <option value="it">Team IT</option>
-                </select>
-            </div>
-            <div class="form-attribute">
-                <label for="score">Score</label>
-                <input type="number" name="score" id="score" min="1" max="100">
-            </div>
-        </div>
-        <div id="right-form">
-            <div class="form-attribute">
-                <label for="description" style="color: black;">Description</label>
-                <textarea name="description" id="description" cols="30" rows="7"
-                    placeholder="Describe your event here ..."></textarea>
-            </div>
-            <div id="select">
+            <form id="event-form" action="/create/event" method="POST">
+                <div class="event-header">
+                    <label for="event-name">Event Name</label>
+                    <input type="text" id="event-name" name="eventname" value="New Event">
+                </div>
+                <div class="form-attribute">
+                    <label for="start-time">Start Time</label>
+                    <input type="datetime-local" name="startTime" id="start-time">
+                </div>
+                <div class="form-attribute">
+                    <label for="end-time">End Time</label>
+                    <input type="datetime-local" name="endTime" id="end-time">
+                </div>
+                <div class="form-attribute">
+                    <label for="location">Location</label>
+                    <input type="url" name="location" id="location">
+                </div>
+                <div class="form-attribute">
+                    <label for="scale">Scale</label>
+                    <select name="" id="">
+                        <option value="cokhi">Team cơ khí</option>
+                        <option value="dien">Team Điện</option>
+                        <option value="it">Team IT</option>
+                    </select>
+                </div>
+                <div class="form-attribute">
+                    <label for="score">Score</label>
+                    <input type="number" name="score" id="score" min="1" max="100">
+                </div>
+
                 <div id="list-attendees">
-                    <div class="title">Add attendees</div>
+                    <div class="input-item">
+                        <span>Add attendees</span>
+                        <div class="ip">
+                            <input type="search" id="member-search" placeholder="Search for attendees ...">
+                            <!-- <span class="material-icons" id="add-attendees">add</span> -->
+                        </div>
+                    </div>
                     <div style="overflow-y: scroll; max-height: 180px;">
                         <div class="person">
                             <input type="checkbox" name="" id="a1">
@@ -202,13 +139,14 @@
                     </div>
                 </div>
                 <div id="list-times">
-                    <div class="title">Recommend Times</div>
-                    <div id="time-input">
-                        <input type="datetime-local" name="recommendTime" id="recommendTime">
-                        <span class="material-icons" style="text-align: center;" id="add-time">add</span>
+                    <div class="input-item">
+                        <span>Recommend times</span>
+                        <div class="ip">
+                            <input type="datetime-local" name="recommendTime" id="recommendTime">
+                            <span class="material-icons" id="add-time">add</span>
+                        </div>
                     </div>
                     <div style="overflow-y: scroll; max-height: 150px;" id="list-time">
-
                         <div class="time">
                             <!-- <input type="checkbox" name="" id="t1"> -->
                             <label for="t1">2021/03/17 08:00</label>
@@ -224,33 +162,28 @@
                             <label for="t3">2021/03/17 08:00</label>
                             <span class="material-icons delete-time">clear</span>
                         </div>
-
                     </div>
                 </div>
-            </div>
+                <div class="form-attribute">
+                    <label for="description" style="color: black;">Description</label>
+                    <textarea name="description" id="description" cols="30" rows="7"
+                        placeholder="Describe your event here ..."></textarea>
+                </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div></div>
+                    <input type="submit" id="submit" value="Save">
+                </div>
+
+            </form>
         </div>
-        <span class="material-icons" id="close-event-btn">close</span>
-        <input type="submit" id="submit" value="Save">
-    </form>
+    </div>
+
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="/javascripts/sidebar.js"></script>
-
-    <script>
-        var table = $('#event-table').DataTable();
-        $('#event-table_wrapper label').css('color', 'white');
-        $('#event-table_wrapper input').css('background-color', 'white');
-        $('#event-table_wrapper select').css('color', 'black');
-        $('#event-table_wrapper select').css('background-color', 'white');
-        $('#event-table_info').css('color', 'whitesmoke');
-        $('.paginate_button a').css('color', 'white');
-        $('#event-table tbody').on('click', 'tr', function () {
-            window.location.href = "http://localhost:3000/mod/event"
-        });
-    </script>
+    <script src="/javascripts/event.js"></script>
 </body>
 
 </html>

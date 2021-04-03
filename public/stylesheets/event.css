@@ -1,28 +1,16 @@
 #event-form {
-    position: fixed;
+    position: relative;
     z-index: 100;
     background-color: white;
-    width: 95%;
-    min-height: 88vh;
-    top: 60px;
+    width: 55%;
     color: black;
     margin: auto;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 0.5px solid black;
-    margin-bottom: 50px;
-    overflow: visible;
-    display: flex;
-    justify-content: space-between;
-    flex-flow: row;
+    margin-bottom: 10px;
 }
 
-#left-form {
-    width: 40%;
-    margin-top: 30px;
-}
 .form-attribute {
     margin-bottom: 10px;
     font-size: 14px;
@@ -38,7 +26,7 @@
     width: 100%;
     padding: 5px 0px;
     border: none;
-    border-bottom: 1px solid #19b3d3;
+    border-bottom: 1px solid #17a2b8;
     outline: none;
 }
 
@@ -56,100 +44,154 @@
     font-size: 14px;
     color: black;
 }
-#close-event-btn {
-    font-size: 30px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    color: grey;
-    font-weight: bold;
-}
-#close-event-btn:hover {
-    cursor: pointer;
-    color: rgb(255, 61, 61);
-}
 
-#right-form {
-    position: relative;
-    width: 55%;
-    margin-top: 20px;
-}
-
-.form-attribute textarea {
-    width: 100%;
-    border: 1.5px solid black;
-    place-content: 'Describe your event here ...';
-    padding: 10px;
-    border-radius: 5px;
-}
 
 #submit {
-    position: absolute;
     font-size: 16px;
-    background: #ff4c2c;
+    background: #17a2b8;
     color: white;
     padding: 7px 10px;
     font-weight: bold;
     border-radius: 5px;
     border: none;
     outline: none;
-    bottom: 20px;
-    right: 20px;
 }
-
-#select {
-    display: flex;
-    flex-flow: row;
-    justify-content: space-between;
-    width: 100%;
+#edit {
+    font-size: 16px;
+    background: #17a2b8;
+    color: white;
+    padding: 7px 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+}
+#cancel {
+    font-size: 16px;
+    color: black;
+    padding: 7px 10px;
+    font-weight: normal;
+    border-radius: 5px;
+    border: none;
+    outline: none;
 }
 
 #list-attendees {
-    width: 47%;
-}
-.title {
     width: 100%;
-    background-color: #1899b3;
-    color: white;
-    font-size: 18px;
-    padding: 2px 0px;
-    text-align: center;
-    font-weight: bold;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-radius: 5px;
 }
+
 #list-times {
-    width: 47%;
+    width: 100%;
+    border-radius: 5px;
 }
 .person {
-    padding: 0px 2px;
-}
-.person:hover {
-    background-color: rgba(245, 245, 245, 0.952);
+    padding-left: 30px;
 }
 
 .time {
-    padding: 0px 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.at {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.at:hover {
+    background-color: rgba(245, 245, 245, 0.952);
 }
 .time:hover {
     background-color: rgba(245, 245, 245, 0.952);
 }
 
-#time-input {
+.delete {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666666;
+}
+.delete:hover {
+    cursor: pointer;
+    color: tomato;
+}
+
+.event-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+}
+
+#list-at {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: rgb(37, 165, 165);
+    color: white;
+    padding: 7px 10px;
+    border-radius: 3px;
+}
+#list-at:hover {
+    cursor: pointer;
+}
+.counting {
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    height: 65%;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 300;
+}
+.counting #counting-title {
+    background-color: teal;
+    font-size: 18px;
+    padding: 10px;
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-
-#time-input span {
-    background-color: transparent;
-    font-size: 30px;
-    border-bottom-right-radius: 5px;
+#search-at {
+    width: 100%;
+    padding: 5px;
+    font-weight: 400;
+    margin-left: 10px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    outline: none;
 }
-#time-input span:hover {
-    background-color: rgb(209, 207, 207);
+#close-counting:hover {
+    color: rgb(245, 68, 68);
     cursor: pointer;
 }
-#time-input input {
-    width: 90%;
+
+.group-btn-at {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+.group-btn-at .rmv-at {
+    font-size: 16px;
+    font-weight: bold;
+    color: #666666;
+}
+.group-btn-at .rmv-at:hover {
+    cursor: pointer;
+    color: tomato;
+}
+.person-view {
+    padding-left: 15px;
+}
+.time-view {
+    padding-left: 35px;
 }

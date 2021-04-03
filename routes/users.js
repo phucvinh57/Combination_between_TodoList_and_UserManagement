@@ -32,5 +32,12 @@ router.get('/setting', [authJwt.verifyToken], function (req, res, next) {
         res.status(403).send({ message: 'Require user role' })
     }
 });
+router.get('/event', [authJwt.verifyToken], function (req, res, next) {
+    if (req.role === 'user') {
+        res.render('user/event', { title: 'Event' });
+    } else {
+        res.status(403).send({ message: 'Require user role' })
+    }
+});
 
 module.exports = router;

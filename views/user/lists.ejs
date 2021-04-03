@@ -31,14 +31,6 @@
 
         </div>
         <div class="navbar-nav">
-            <button id="add-item-btn" class="btn btn-success" href="#">
-                <span style="margin-right: 5px;">New task</span>
-                <span class="material-icons">
-                    playlist_add
-                </span>
-            </button>
-        </div>
-        <div class="navbar-nav">
             <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="user-btn" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
@@ -152,8 +144,7 @@
         $('#event-table_info').css('color', 'whitesmoke');
         $('.paginate_button a').css('color', 'white');
         $('#event-table tbody').on('click', 'tr', function () {
-            var data = table.row(this).data();
-            alert('You clicked on ' + data[0] + '\'s row');
+            window.location.href = "http://localhost:3000/user/event"
         });
     </script>
 </body>

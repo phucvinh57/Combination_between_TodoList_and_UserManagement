@@ -37,5 +37,21 @@ router.get('/setting', authJwt.verifyToken, function(req, res, next) {
         res.status(403).send({ message: 'Required moderator role'})
     }
 });
+router.get('/event/create', authJwt.verifyToken, function(req, res, next) {
+    if(req.role === 'moderator') {
+        res.render('moderator/new-event', { title: 'Moderator'});
+    }
+    else {
+        res.status(403).send({ message: 'Required moderator role'})
+    }
+});
+router.get('/event', authJwt.verifyToken, function(req, res, next) {
+    if(req.role === 'moderator') {
+        res.render('moderator/event', { title: 'Moderator'});
+    }
+    else {
+        res.status(403).send({ message: 'Required moderator role'})
+    }
+});
 
 module.exports = router;
