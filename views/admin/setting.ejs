@@ -59,16 +59,16 @@
     <div class="main">
         <div class="sidebar" style="left: -220px;">
             <a href="http://localhost:3000/admin" class="link">
-                <span class="material-icons">home</span>
-                <span>Home</span>
+                <span class="material-icons">dns</span>
+                <span>Event</span>
             </a>
             <a href="http://localhost:3000/admin/lists" class="link" id="drop">
-                <span class="material-icons">dns</span>
-                <span>Lists</span>
+                <span class="material-icons">supervisor_account</span>
+                <span>Accounts</span>
             </a>
             <a href="#" class="link">
-                <span class="material-icons">assignment_turned_in</span>
-                <span>Completed List</span>
+                <span class="material-icons">delete</span>
+                <span>Recycle Bin</span>
             </a>
         </div>
         <div class="main-content">
@@ -88,12 +88,14 @@
             <div class="rightbox">
                 <form class="content" action="/adas">
                     <h1>Personal Info</h1>
-                    <label for="name">Name:</label><br>
-                    <input type="text" id="name" class="input" value="Nguyễn Phúc Vinh">
+                    <label for="name">Phone Number:</label><br>
+                    <input type="text" id="name" class="input" value="0373 395 726">
                     <label for="birthday">Birthday:</label><br>
                     <input type="date" class="input" id="birthday">
                     <label for="email">Email:</label><br>
-                    <input type="email" class="input" id="email">
+                    <input type="email" class="input" id="email" value="vinh.nguyen05072001@hcmut.edu.vn">
+                    <label for="github">Github:</label><br>
+                    <input type="url" id="name" class="input" value="https://github.com/phucvinh57">
                     <div class="edit-btns">
                         <button type="button" class="btn btn-light">Cancel</button>
                         <button type="submit" class="btn btn-info">Save</button>
@@ -113,7 +115,7 @@
                     </div>
                 </form>
                 <form class="content" style="display: none;">
-                    <div style="color: rgb(11, 104, 104); margin: 20px; padding-right: 20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam deserunt quos voluptatibus facilis sapiente inventore illum, id ipsam autem, cum in minus? Ullam in beatae ipsum aspernatur rem fugit delectus!</div>
+                    <div style="color: rgb(11, 104, 104); margin: 20px; padding-right: 20px;">Setting evaluating system here</div>
                 </form>
             </div>
         </div>

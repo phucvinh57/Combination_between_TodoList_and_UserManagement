@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/stylesheets/navigation-bar.css">
+    <link rel="stylesheet" href="/stylesheets/lists.css">
+    <link rel="stylesheet" href="/stylesheets/sidebar.css">
+    <link rel="stylesheet" href="/stylesheets/profile-card.css">
+
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top justify-content-between" style="height: 50px;">
+        <!-- Navbar content -->
+        <div class="navbar-nav" style="margin-top: 7px;">
+            <div class="navbar-brand">
+                <input type="checkbox" id="check">
+                <label for="check" id="sidebar-btn">
+                    <i class="fas fa-bars"></i>
+                </label>
+                Event App
+            </div>
+        </div>
+
+        <div class="navbar-nav">
+            <div class="dropdown">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="user-btn" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    <span class="material-icons">account_circle</span>
+                    <span style="margin-left: 5px;">Phuc Vinh</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-btn">
+                    <a class="dropdown-item" href="http://localhost:3000/admin/setting">Setting</a>
+                    <form action="/auth/logout" method="POST">
+                        <input class="dropdown-item" type="submit" value="Log out">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="sidebar" style="left: -220px;">
+            <a href="http://localhost:3000/admin" class="link">
+                <span class="material-icons">dns</span>
+                <span>Events</span>
+            </a>
+            <a href="#" class="link" id="drop">
+                <span class="material-icons">supervisor_account</span>
+                <span>Accounts</span>
+            </a>
+            <a href="http://localhost:3000/admin/recycle-bin" class="link">
+                <span class="material-icons">delete</span>
+                <span>Recycle Bin</span>
+            </a>
+        </div>
+        <div class="main-content">
+            <!-- To do -->
+            <table id="account-table" class="display">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Phone number</th>
+                        <th>Occupation</th>
+                        <th>Mod</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1915940</td>
+                        <td>Nguyễn Phúc Vinh</td>
+                        <td>0373 395 726</td>
+                        <td>Student</td>
+                        <td class="mod">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="mod1">
+                                <label class="custom-control-label" for="mod1"></label>
+                            </div>
+                            <span class="material-icons delete-user">delete</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1915940</td>
+                        <td>Nguyễn Phúc Vinh</td>
+                        <td>0373 395 726</td>
+                        <td>Student</td>
+                        <td class="mod">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="mod2">
+                                <label class="custom-control-label" for="mod2"></label>
+                            </div>
+                            <span class="material-icons delete-user">delete</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>1915940</td>
+                        <td>Nguyễn Phúc Vinh</td>
+                        <td>0373 395 726</td>
+                        <td>Student</td>
+                        <td class="mod">
+                            <div class="custom-control custom-switch">
+                                <input type="checkbox" class="custom-control-input" id="mod3">
+                                <label class="custom-control-label" for="mod3"></label>
+                            </div>
+                            <span class="material-icons delete-user">delete</span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>ID</th>
+                        <th>Username</th>
+                        <th>Phone number</th>
+                        <th>Occupation</th>
+                        <th>Mod</th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+    <!-- <div id="user-card">
+        <div id="left-card">
+            <img src="/images/avatar.png" alt="Avatar" id="avatar">
+            <span>Phúc Vinh</span>
+        </div>
+        <div id="right-card">
+
+            <div class="title">Information</div>
+            <div class="info">
+                <span class="label">Name</span>
+                <span class="content">Nguyễn Phúc Vinh</span>
+            </div>
+            <div class="info">
+                <span class="label">Email</span>
+                <span class="content">Phone</span>
+            </div>
+            
+            <span>Email</span>
+            <span>Phone</span>
+            <div class="title">Contact</div>
+            <a href="fb"></a>
+            <a href=""></a>
+        </div>
+        <span class="material-icons" id="close-card">close</span>
+    </div> -->
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="/javascripts/sidebar.js"></script>
+
+    <script>
+        var table = $('#account-table').DataTable({
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1] /* 1st one, start by the right */
+            }]
+        });
+        $('#account-table_wrapper label').css('color', 'white');
+        $('#account-table_wrapper input').css('background-color', 'white');
+        $('#account-table_wrapper select').css('color', 'black');
+        $('#account-table_wrapper select').css('background-color', 'white');
+        $('#account-table_info').css('color', 'whitesmoke');
+        $('.paginate_button a').css('color', 'white');
+        $('#account-table tbody').on('click', 'tr', function () {
+            var data = table.row(this).data();
+            alert('You clicked on ' + data[0] + '\'s row');
+        });
+        $('.custom-control').on('click', function (event) {
+            event.stopPropagation();
+        })
+    </script>
+</body>
+
+</html>

@@ -95,79 +95,71 @@
                     <input type="number" name="score" id="score" min="1" max="100">
                 </div>
 
+                
                 <div id="list-attendees">
-                    <div class="input-item">
-                        <span>Add attendees</span>
-                        <div class="ip">
-                            <input type="search" id="member-search" placeholder="Search for attendees ...">
-                            <!-- <span class="material-icons" id="add-attendees">add</span> -->
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Add Attendees</span>
                         </div>
+                        <input type="text" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" id="member-search">
                     </div>
-                    <div style="overflow-y: scroll; max-height: 180px;">
-                        <div class="person">
-                            <input type="checkbox" name="" id="a1">
-                            <label for="a1">Nguyễn Phúc Vinh</label>
-                        </div>
-                        <div class="person">
-                            <input type="checkbox" name="" id="a2">
-                            <label for="a2">Cù Đỗ Thanh Nhân</label>
-                        </div>
-                        <div class="person">
-                            <input type="checkbox" name="" id="a3">
-                            <label for="a3">Vũ Nguyễn Minh Huy</label>
-                        </div>
-                        <div class="person">
-                            <input type="checkbox" name="" id="a4">
-                            <label for="a4">Ngô Minh Hồng Thái</label>
-                        </div>
-                        <div class="person">
-                            <input type="checkbox" name="" id="a5">
-                            <label for="a5">Châu Thành Đạt</label>
-                        </div>
-                        <div class="person">
-                            <input type="checkbox" name="" id="a6">
-                            <label for="a6">Trương Quý Phát</label>
-                        </div>
-                        <div class="person">
-                            <input type="checkbox" name="" id="a7">
-                            <label for="a7">Nguyễn Lập Quân</label>
-                        </div>
-                        <div class="person">
-                            <input type="checkbox" name="" id="a8">
-                            <label for="a8">Vũ Nguyễn Minh Huy</label>
-                        </div>
-                    </div>
+                    <!--  -->
+                    <ul class="list-group"
+                        style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            <span>Nguyễn Phúc Vinh</span>
+                        </li>
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            <span>Vũ Nguyễn Minh Huy</span>
+                        </li>
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            <span>Trương Quý Phát</span>
+                        </li>
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            <span>Cù Đỗ Thanh Nhân</span>
+                        </li>
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                            <span>Ngô Minh Hồng Thái</span>
+                        </li>
+                    </ul>
                 </div>
+                
                 <div id="list-times">
-                    <div class="input-item">
-                        <span>Recommend times</span>
-                        <div class="ip">
-                            <input type="datetime-local" name="recommendTime" id="recommendTime">
-                            <span class="material-icons" id="add-time">add</span>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Recommend times</span>
+                        </div>
+                        <input type="datetime-local" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" id="recommendTime">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button" id="add-time">Add</button>
                         </div>
                     </div>
-                    <div style="overflow-y: scroll; max-height: 150px;" id="list-time">
-                        <div class="time">
-                            <!-- <input type="checkbox" name="" id="t1"> -->
-                            <label for="t1">2021/03/17 08:00</label>
-                            <span class="material-icons delete-time">clear</span>
-                        </div>
-                        <div class="time">
-                            <!-- <input type="checkbox" name="" id="t2"> -->
-                            <label for="t2">2021/03/17 08:00</label>
-                            <span class="material-icons delete-time">clear</span>
-                        </div>
-                        <div class="time">
-                            <!-- <input type="checkbox" name="" id="t3"> -->
-                            <label for="t3">2021/03/17 08:00</label>
-                            <span class="material-icons delete-time">clear</span>
-                        </div>
-                    </div>
+                    <ul class="list-group" id="list-time"
+                        style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
+                        <li class="list-group-item time">
+                            <span>2021/03/17 08:00</span>
+                            <span class="material-icons delete">clear</span>
+                        </li>
+                        <li class="list-group-item time">
+                            <span>2021/03/17 08:00</span>
+                            <span class="material-icons delete">clear</span>
+                        </li>
+                        <li class="list-group-item time">
+                            <span>2021/03/17 08:00</span>
+                            <span class="material-icons delete">clear</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="form-attribute">
-                    <label for="description" style="color: black;">Description</label>
-                    <textarea name="description" id="description" cols="30" rows="7"
-                        placeholder="Describe your event here ..."></textarea>
+                <div class="form-group">
+                    <label for="description" style="font-weight: 600; margin-bottom: -5px;">Description</label>
+                    <textarea class="form-control" id="description" rows="6"></textarea>
                 </div>
                 <div style="display: flex; justify-content: space-between;">
                     <div></div>

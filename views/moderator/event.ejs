@@ -68,6 +68,7 @@
             <form id="event-form" action="/create/event" method="POST">
                 <div class="event-edit">
                     <input type="button" id="edit" value="Edit">
+                    <input type="button" id="delete-event" class="btn btn-danger" value="Delete" style="font-weight: bold;">
                     <input type="button" id="cancel" value="Discard" style="display: none;">
                     <div id="list-at">
                         <span class="material-icons"
@@ -257,15 +258,19 @@
         var footer = document.getElementById('footer');
         var counting = document.getElementsByClassName('counting')[0];
         var closeCounting = document.getElementById('close-counting');
+        var deleteEventBtn = document.getElementById('delete-event');
 
         for (let i of allInput) {
             i.disabled = true;
         }
         listOfAttendees.style.display = 'none';
         footer.style.display = 'none';
+
+
         editBtn.onclick = function () {
             this.style.display = 'none';
             cancelBtn.style.display = '';
+            deleteEventBtn.style.display = 'none';
             footer.style.display = 'flex';
             for (let i of allInput) {
                 i.disabled = false;
@@ -273,6 +278,7 @@
             listOfAttendees.style.display = '';
         }
         cancelBtn.onclick = function () {
+            deleteEventBtn.style.display = '';
             this.style.display = 'none';
             editBtn.style.display = '';
             for (let i of allInput) {
@@ -297,6 +303,7 @@
         searchAttendees.onkeyup = function () {
             var filter, li, a, i, txtValue;
             filter = this.value.toUpperCase();
+            filter = removeVietnameseTones(filter);
             li = document.getElementsByClassName('list-group-item at');
             for (i = 0; i < li.length; i++) {
                 a = li[i].childNodes[1];

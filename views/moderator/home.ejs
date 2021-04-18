@@ -100,7 +100,7 @@
                     {
                         id: 'zxcasq',
                         name: "Vacation Leave",
-                        badge: "02/13 - 02/15", // Event badge (optional)
+                        badge: "04/13 - 04/15", // Event badge (optional)
                         date: ["April/13/2020", "April/15/2020"], // Date range
                         description: "Vacation leaves for 3 days.", // Event description (optional)
                         type: "event",
@@ -110,6 +110,9 @@
                 ]
             });
             $("#calendar").evoCalendar('setTheme', 'Midnight Blue');
+            $("#calendar").on('selectEvent', function(event, activeEvent) {
+                window.location.href = "http://localhost:3000/mod/event";
+            });
         })
     </script>
 </body>

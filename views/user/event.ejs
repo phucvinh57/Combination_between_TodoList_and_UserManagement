@@ -109,23 +109,21 @@
                     <ul class="list-group"
                         style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
                         <li class="list-group-item person-view">
-                            <!-- <input class="form-check-input me-1" type="checkbox" value="" aria-label="..."> -->
+                            
                             <span>Nguyễn Phúc Vinh</span>
                         </li>
                         <li class="list-group-item person-view">
-                            <!-- <input class="form-check-input me-1" type="checkbox" value="" aria-label="..."> -->
+                            
                             <span>Vũ Nguyễn Minh Huy</span>
                         </li>
                         <li class="list-group-item person-view">
-                            <!-- <input class="form-check-input me-1" type="checkbox" value="" aria-label="..."> -->
+                            
                             <span>Trương Quý Phát</span>
                         </li>
                         <li class="list-group-item person-view">
-                            <!-- <input class="form-check-input me-1" type="checkbox" value="" aria-label="..."> -->
                             <span>Cù Đỗ Thanh Nhân</span>
                         </li>
                         <li class="list-group-item person-view">
-                            <!-- <input class="form-check-input me-1" type="checkbox" value="" aria-label="..."> -->
                             <span>Ngô Minh Hồng Thái</span>
                         </li>
                     </ul>
@@ -183,14 +181,15 @@
     </script>
 
     <script>
-        var searchAttendees = document.getElementById('search-at');
+        var searchAttendees = document.getElementById('member-search');
 
         searchAttendees.onkeyup = function () {
             var filter, li, a, i, txtValue;
             filter = this.value.toUpperCase();
-            li = document.getElementsByClassName('list-group-item at');
+            li = document.getElementsByClassName('list-group-item person-view');
             for (i = 0; i < li.length; i++) {
                 a = li[i].childNodes[1];
+                console.log(a);
                 txtValue = a.textContent || a.innerText;
                 txtValue = removeVietnameseTones(txtValue);
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {

@@ -30,14 +30,7 @@
             </div>
 
         </div>
-        <div class="navbar-nav">
-            <button id="add-item-btn" class="btn btn-success" href="#">
-                <span style="margin-right: 5px;">New task</span>
-                <span class="material-icons">
-                    playlist_add
-                </span>
-            </button>
-        </div>
+       
         <div class="navbar-nav">
             <div class="dropdown">
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="user-btn" data-toggle="dropdown"
@@ -57,17 +50,17 @@
 
     <div class="main">
         <div class="sidebar" style="left: -220px;">
-            <a href="http://localhost:3000/admin" class="link">
-                <span class="material-icons">home</span>
-                <span>Home</span>
-            </a>
-            <a href="#" class="link" id="drop">
+            <a class="link" href="#">
                 <span class="material-icons">dns</span>
-                <span>Lists</span>
+                <span>Events</span>
             </a>
-            <a href="#" class="link">
-                <span class="material-icons">assignment_turned_in</span>
-                <span>Completed List</span>
+            <a href="http://localhost:3000/admin/accounts" class="link" id="drop">
+                <span class="material-icons">supervisor_account</span>
+                <span>Accounts</span>
+            </a>
+            <a href="http://localhost:3000/admin/recycle-bin" class="link">
+                <span class="material-icons">delete</span>
+                <span>Recycle Bin</span>
             </a>
         </div>
         <div class="main-content">
@@ -75,7 +68,7 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Event's name</th>
+                        <th>Username</th>
                         <th>Venue</th>
                         <th>Responsible</th>
                         <th>Start Date</th>

@@ -40,6 +40,7 @@ memberSearch.onkeyup = function () {
     // Declare variables
     var filter, li, a, i, txtValue;
     filter = this.value.toUpperCase();
+    filter = removeVietnameseTones(filter);
     li = document.getElementsByClassName('list-group-item person');
 
     // Loop through all list items, and hide those who don't match the search query

@@ -1,0 +1,54 @@
+#user-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    width: 50%;
+    height: 58%;
+    border-radius: 10px;
+    border: none;
+
+}
+#left-card {
+    background-image: linear-gradient(to right, #0F2027 , #203A43, #2C5364);
+    color: white;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+}
+#left-card span {
+    color: white;
+    font-weight: bold;
+}
+#avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+}
+#right-card {
+    padding: 15px;
+    width: 75%;
+}
+#right-card .title {
+    width: 100%;
+    border-bottom: 1px solid #2C5364;
+    font-weight: bold;
+}
+#close-card {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    color: gray;
+}
+#close-card:hover {
+    color: tomato;
+    cursor: pointer;
+}

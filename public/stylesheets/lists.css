@@ -3,6 +3,7 @@ body {
     padding: 0;
     background-color: #1a1a1a;
     font-family: Arial, Helvetica, sans-serif, "Roboto";
+    overflow-x: hidden;
 }
 /* Main content */
 .main {
@@ -27,4 +28,31 @@ body {
 }
 #event-table tbody tr {
     color: black;
+}
+#event-table tbody tr:hover {
+    cursor: pointer;
+}
+#account-table {
+    background-color: #23282e;
+    border-radius: 5px;
+}
+
+#account-table tbody tr {
+    color: black;
+}
+#account-table tbody tr:hover {
+    cursor: pointer;
+}
+.delete-user {
+    display: inline-block;
+    color: gray;
+}
+.delete-user:hover {
+    color: rgb(61, 61, 61);
+}
+.mod {
+    display: flex;
+    flex-flow: row;
+    justify-content: flex-start;
+    align-items: center;
 }
