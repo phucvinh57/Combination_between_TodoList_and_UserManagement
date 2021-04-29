@@ -40,7 +40,7 @@
                     <span style="margin-left: 5px;">Phuc Vinh</span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-btn">
-                    <a class="dropdown-item" href="http://localhost:3000/user/setting">Setting</a>
+                    <a class="dropdown-item" href="http://localhost:3000/admin/setting">Setting</a>
                     <form action="/auth/logout" method="POST">
                         <input class="dropdown-item" type="submit" value="Log out">
                     </form>
@@ -51,56 +51,59 @@
 
     <div class="main">
         <div class="sidebar" style="left: -220px;">
-            <a href="http://localhost:3000/user" class="link">
+            <a href="http://localhost:3000/admin" class="link">
                 <span class="material-icons">home</span>
                 <span>Home</span>
             </a>
-            <a href="http://localhost:3000/user/lists" class="link" id="drop">
+            <a href="http://localhost:3000/admin/lists" class="link" id="drop">
                 <span class="material-icons">dns</span>
-                <span>Lists</span>
+                <span>Events</span>
             </a>
-            <a href="#" class="link">
-                <span class="material-icons">assignment_turned_in</span>
-                <span>Completed List</span>
+            <a href="http://localhost:3000/admin/accounts" class="link" id="drop">
+                <span class="material-icons">supervisor_account</span>
+                <span>Accounts</span>
+            </a>
+            <a href="http://localhost:3000/admin/recycle-bin" class="link">
+                <span class="material-icons">delete</span>
+                <span>Recycle Bin</span>
             </a>
         </div>
         <div class="main-content">
             <form id="event-form" action="/create/event" method="POST">
                 <div class="event-header">
                     <label for="event-name">Event Name</label>
-                    <input type="text" id="event-name" name="eventname" value="Họp ticklab">
+                    <input type="text" id="event-name" name="eventname" value="New Event">
                 </div>
                 <div class="form-attribute">
                     <label for="start-time">Start Time</label>
-                    <input type="datetime-local" name="startTime" id="start-time" value="2014-01-02T11:42:13">
+                    <input type="datetime-local" name="startTime" id="start-time">
                 </div>
                 <div class="form-attribute">
                     <label for="end-time">End Time</label>
-                    <input type="datetime-local" name="endTime" id="end-time" value="2014-01-02T18:42:13">
+                    <input type="datetime-local" name="endTime" id="end-time">
                 </div>
                 <div class="form-attribute">
                     <label for="location">Location</label>
-                    <input type="url" name="location" id="location" value="https://goo.gl/maps/riAwtbQshf93ADJg6">
+                    <input type="url" name="location" id="location">
                 </div>
                 <div class="form-attribute">
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                        style="border-bottom: none; padding: 0 2px;">
-                        <option selected>Choose...</option>
-                        <option value="1">Team IT</option>
-                        <option value="2">Team cơ khí</option>
-                        <option value="3">Team điện</option>
+                    <label for="scale">Scale</label>
+                    <select name="" id="">
+                        <option value="cokhi">Team cơ khí</option>
+                        <option value="dien">Team Điện</option>
+                        <option value="it">Team IT</option>
                     </select>
                 </div>
                 <div class="form-attribute">
                     <label for="score">Score</label>
-                    <input type="number" name="score" id="score" min="1" max="100" value="15">
+                    <input type="number" name="score" id="score" min="1" max="100">
                 </div>
 
+                
                 <div id="list-attendees">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">List of Attendees</span>
+                            <span class="input-group-text" id="inputGroup-sizing-default">Add Attendees</span>
                         </div>
                         <input type="text" class="form-control" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" id="member-search">
@@ -108,53 +111,65 @@
                     <!--  -->
                     <ul class="list-group"
                         style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
-                        <li class="list-group-item person-view">
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                             <span>Nguyễn Phúc Vinh</span>
                         </li>
-                        <li class="list-group-item person-view">]
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                             <span>Vũ Nguyễn Minh Huy</span>
                         </li>
-                        <li class="list-group-item person-view">
-                            
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                             <span>Trương Quý Phát</span>
                         </li>
-                        <li class="list-group-item person-view">
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                             <span>Cù Đỗ Thanh Nhân</span>
                         </li>
-                        <li class="list-group-item person-view">
+                        <li class="list-group-item person">
+                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                             <span>Ngô Minh Hồng Thái</span>
                         </li>
                     </ul>
                 </div>
+                
                 <div id="list-times">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Recommend times</span>
                         </div>
-                        <div class="input-group-append"></div>
-                            <button class="btn btn-info" type="button" id="add-time">Submit</button>
+                        <input type="datetime-local" class="form-control" aria-label="Default"
+                            aria-describedby="inputGroup-sizing-default" id="recommendTime">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button" id="add-time">Add</button>
                         </div>
                     </div>
                     <ul class="list-group" id="list-time"
                         style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
-                        <li class="list-group-item time-view">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                        <li class="list-group-item time">
                             <span>2021/03/17 08:00</span>
+                            <span class="material-icons delete">clear</span>
                         </li>
-                        <li class="list-group-item time-view">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                        <li class="list-group-item time">
                             <span>2021/03/17 08:00</span>
+                            <span class="material-icons delete">clear</span>
                         </li>
-                        <li class="list-group-item time-view">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
+                        <li class="list-group-item time">
                             <span>2021/03/17 08:00</span>
+                            <span class="material-icons delete">clear</span>
                         </li>
                     </ul>
-                    
+                </div>
                 <div class="form-group">
                     <label for="description" style="font-weight: 600; margin-bottom: -5px;">Description</label>
                     <textarea class="form-control" id="description" rows="6"></textarea>
                 </div>
+                <div style="display: flex; justify-content: space-between;">
+                    <div></div>
+                    <input type="submit" id="submit" value="Save">
+                </div>
+
             </form>
         </div>
     </div>
@@ -165,40 +180,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/javascripts/sidebar.js"></script>
     <script src="/javascripts/event.js"></script>
-
-    <script>
-        var allInput = document.querySelectorAll('.form-attribute input, .form-attribute select, .form-attribute textarea, .ip #recommendTime, #submit, #description, #event-name');
-
-
-        var counting = document.getElementsByClassName('counting')[0];
-
-        for (let i of allInput) {
-            i.disabled = true;
-        }
-
-    </script>
-
-    <script>
-        var searchAttendees = document.getElementById('member-search');
-
-        searchAttendees.onkeyup = function () {
-            var filter, li, a, i, txtValue;
-            filter = this.value.toUpperCase();
-            li = document.getElementsByClassName('list-group-item person-view');
-            for (i = 0; i < li.length; i++) {
-                a = li[i].childNodes[1];
-                console.log(a);
-                txtValue = a.textContent || a.innerText;
-                txtValue = removeVietnameseTones(txtValue);
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
-            }
-        }
-
-    </script>
 </body>
 
 </html>

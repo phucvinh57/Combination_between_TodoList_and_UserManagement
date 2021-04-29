@@ -1,76 +1,57 @@
-const config = require('../config/auth.config');
-const connection = require('../config/db.config');
+// const config = require('../config/auth.config');
+const data = require('../config/db.config');
 
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcryptjs');
-const salt = 9;
-const expiresToken = 86400;
-
-var signUp = function (req, res, next) {
-    //Save user to database
-    let username = req.body.username;
-    let email = req.body.email;
-    let password = bcrypt.hashSync(req.body.password, salt);
-    console.log(username, email, password);
-    connection.query('INSERT INTO users (Username, Email, Password) VALUES (?, ?, ?)', [username, email, password], function (err, results) {
-        connection.query('SELECT * FROM users WHERE Username = ?', [username], function (err, user) {
-            connection.query('INSERT INTO user_roles VALUES (?, ?)', [user[0].ID, 2], function (err, result) {
-                console.log('Sign up successfully!');
-                // Sign a jwt token
-                var token = jwt.sign({ id: user[0].ID, role: 'user' }, config.secret, {
-                    expiresIn: expiresToken
-                });
-                res.cookie('token', token);
-                // resolve({
-                //     id: user[0].ID,
-                //     username: user[0].Username,
-                //     email: user[0].Email,
-                //     role: 'user',
-                // });
-                next();
-            });
-        });
-    });
+function findUser(username, data) {
+    for(let i of data) {
+        if(i.username == username) return i;
+    }
+    return null;
 }
-var logIn = function (req, res, next) {
-    connection.query('SELECT * FROM users WHERE Username = ?', [req.body.username], function (err, user) {
-        if (user.length === 0) {
-            console.log('Username does not exist!');
-            res.redirect('/');
-            return;
-        }
-        let isValidPassword = bcrypt.compareSync(req.body.password, user[0].Password);
-        if (!isValidPassword) {
-            console.log('Invalid password');
-            res.redirect('/');
-            return;
-        }
-        connection.query('SELECT * FROM user_roles WHERE userID = ?', [user[0].ID], function (err, user_role) {
-            console.log(user_role[0]);
-            connection.query('SELECT * FROM roles WHERE ID = ?', [user_role[0].roleId], function (err, role) {
-                console.log(role[0]);
-                var token = jwt.sign(
-                    {
-                        id: user[0].ID,
-                        role: role[0].Name
-                    },
-                    config.secret,
-                    { expiresIn: expiresToken }
-                );
-                res.cookie('token', token);
-                req.role = role[0].Name;
-                next();
-            });
-        });
-    });
+
+var createAccount = function (req, res) {
+    //Save user to database
+    var username = req.body.username;
+    var password = req.body.password;
+    var email = req.body.email;
+    data.push({
+        "id": data.length,
+        "username": username,
+        "password": password
+    })
+}
+var logIn = function (req, res) {
+    var username = req.body.username;
+    var password = req.body.password;
+    var user = findUser(username, data.user);
+    if(!user) {
+        console.log("Username does not exist !\n");
+        res.redirect('/');
+        return;
+    }
+    if(password != user.password) {
+        console.log("Invalid password! !\n");
+        res.redirect('/');
+        return;
+    }
+    res.cookie('role', user.role);
+    req.role = user.role;
+    req.isLoggedIn = true;
+    res.redirect(`/${req.role}`);
+    return;
+}
+
+var changePassword = function(req, res, next) {
+    
 }
 var logOut = function(req, res, next) {
+    req.isLoggedIn = false;
     res.clearCookie('token');
     res.redirect('/');
 }
 
 module.exports = {
-    signUp: signUp,
-    logIn: logIn,
-    logOut: logOut
+    createAccount,
+    logIn,
+    logOut,
+    changePassword
 }

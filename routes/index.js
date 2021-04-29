@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
     if(req.isLoggedIn === true) {
-        res.redirect('/user');
+        res.redirect(`/${req.role}`);
         return;
     }
     res.render('index', { title: 'Event App' });
