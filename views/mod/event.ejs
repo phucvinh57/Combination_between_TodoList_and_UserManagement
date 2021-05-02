@@ -80,31 +80,31 @@
                     <label for="event-name">Event Name</label>
                     <input type="text" id="event-name" name="eventname" value="Họp ticklab">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="start-time">Start Time</label>
-                    <input type="datetime-local" name="startTime" id="start-time" value="2014-01-02T11:42:13">
+                    <input class="form-control" type="datetime-local" name="startTime" id="start-time" value="2014-01-02T11:42:13">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="end-time">End Time</label>
-                    <input type="datetime-local" name="endTime" id="end-time" value="2014-01-02T18:42:13">
+                    <input class="form-control" type="datetime-local" name="endTime" id="end-time" value="2014-01-02T18:42:13">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="location">Location</label>
-                    <input type="url" name="location" id="location" value="https://goo.gl/maps/riAwtbQshf93ADJg6">
+                    <input class="form-control" type="url" name="location" id="location" value="https://goo.gl/maps/riAwtbQshf93ADJg6">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
                     <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                        style="border-bottom: none; padding: 0 2px;">
+                        style="padding: 0 12px;">
                         <option selected>Choose...</option>
                         <option value="1">Team IT</option>
                         <option value="2">Team cơ khí</option>
                         <option value="3">Team điện</option>
                     </select>
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="score">Score</label>
-                    <input type="number" name="score" id="score" min="1" max="100" value="15">
+                    <input class="form-control" type="number" name="score" id="score" min="1" max="100" value="15">
                 </div>
 
                 <div id="list-attendees">
@@ -112,31 +112,31 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroup-sizing-default">Add Attendees</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Default"
+                        <input class="form-control" type="text" class="form-group" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" id="member-search">
                     </div>
                     <!--  -->
                     <ul class="list-group"
                         style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
                         <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
                             <span>Nguyễn Phúc Vinh</span>
+                            <span class="material-icons">clear</span>
                         </li>
                         <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>Vũ Nguyễn Minh Huy</span>
+                            <span>Nguyễn Phúc Vinh</span>
+                            <span class="material-icons">clear</span>
                         </li>
                         <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>Trương Quý Phát</span>
+                            <span>Nguyễn Phúc Vinh</span>
+                            <span class="material-icons">clear</span>
                         </li>
                         <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>Cù Đỗ Thanh Nhân</span>
+                            <span>Nguyễn Phúc Vinh</span>
+                            <span class="material-icons">clear</span>
                         </li>
                         <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>Ngô Minh Hồng Thái</span>
+                            <span>Nguyễn Phúc Vinh</span>
+                            <span class="material-icons">clear</span>
                         </li>
                     </ul>
                 </div>
@@ -187,7 +187,7 @@
             </div>
             <span class="material-icons" id="close-counting">close</span>
         </div>
-        <ul class="list-group" style="overflow-y: scroll; height: 87%;">
+        <ul class="list-group" style="overflow-y: scroll; height: 77%; overflow-x: hidden; margin-bottom: 5px;">
             <li class="list-group-item at">
                 <span>Nguyễn Phúc Vinh</span>
                 <div class="group-btn-at">
@@ -195,7 +195,6 @@
                         <input type="checkbox" class="custom-control-input" id="aa1">
                         <label class="custom-control-label" for="aa1"></label>
                     </div>
-                    <span class="material-icons rmv-at">clear</span>
                 </div>
             </li>
             <li class="list-group-item at">
@@ -205,7 +204,6 @@
                         <input type="checkbox" class="custom-control-input" id="aa2">
                         <label class="custom-control-label" for="aa2"></label>
                     </div>
-                    <span class="material-icons rmv-at">clear</span>
                 </div>
             </li>
             <li class="list-group-item at">
@@ -215,7 +213,6 @@
                         <input type="checkbox" class="custom-control-input" id="aa3">
                         <label class="custom-control-label" for="aa3"></label>
                     </div>
-                    <span class="material-icons rmv-at">clear</span>
                 </div>
             </li>
             <li class="list-group-item at">
@@ -225,7 +222,6 @@
                         <input type="checkbox" class="custom-control-input" id="aa4">
                         <label class="custom-control-label" for="aa4"></label>
                     </div>
-                    <span class="material-icons rmv-at">clear</span>
                 </div>
             </li>
             <li class="list-group-item at">
@@ -235,11 +231,14 @@
                         <input type="checkbox" class="custom-control-input" id="aa5">
                         <label class="custom-control-label" for="aa5"></label>
                     </div>
-                    <span class="material-icons rmv-at">clear</span>
                 </div>
             </li>
-
         </ul>
+        <div style="display: flex;justify-content: space-between; align-items: center; margin: 0 20px 20px 0;">
+            <div></div>
+            <input type="submit" name="roll_call" role="button" class="btn btn-info">
+        </div>
+        
     </div>
 
 
@@ -250,7 +249,7 @@
     <script src="/javascripts/event.js"></script>
 
     <script>
-        var allInput = document.querySelectorAll('.form-attribute input, .form-attribute select, .form-attribute textarea, .ip #recommendTime, #submit, #description');
+        var allInput = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea, .ip #recommendTime, #submit, #description');
 
         var editBtn = document.getElementById('edit');
         var cancelBtn = document.getElementById('cancel');
@@ -321,7 +320,7 @@
                 }
             }
         }
-
+        
     </script>
 </body>
 

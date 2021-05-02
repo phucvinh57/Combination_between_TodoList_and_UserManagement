@@ -37,7 +37,7 @@
                 <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="user-btn" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false">
                     <span class="material-icons">account_circle</span>
-                    <span style="margin-left: 5px;">Phuc Vinh</span>
+                    <span style="margin-left: 5px;"><%= user.name %></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-btn">
                     <a class="dropdown-item" href="#">Setting</a>
@@ -82,13 +82,13 @@
                 <form class="content" action="/adas">
                     <h1>Personal Info</h1>
                     <label for="name">Phone Number:</label><br>
-                    <input type="text" id="name" class="input" value="0373 395 726">
+                    <input type="text" id="name" class="input" value="<%= user['phone-number'] %>">
                     <label for="birthday">Birthday:</label><br>
-                    <input type="date" class="input" id="birthday">
+                    <input type="date" class="input" id="birthday" value="<%= user.birthday.slice(0, 10) %>">
                     <label for="email">Email:</label><br>
-                    <input type="email" class="input" id="email" value="vinh.nguyen05072001@hcmut.edu.vn">
+                    <input type="email" class="input" id="email" value="<%= user.email %> ">
                     <label for="github">Github:</label><br>
-                    <input type="url" id="name" class="input" value="https://github.com/phucvinh57">
+                    <input type="url" id="name" class="input" value="<%= user.github %> ">
                     <div class="edit-btns" style="margin-top: 50px;">
                         <button type="button" class="btn btn-light">Cancel</button>
                         <button type="submit" class="btn btn-info">Save</button>

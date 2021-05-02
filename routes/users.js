@@ -1,37 +1,22 @@
 var express = require('express');
 var router = express.Router();
 var authJwt = require('../middleware/authJwt');
+var data = require('../config/db.config');
+var eventController = require('../controllers/event.controller');
+var accController = require('../controllers/account.controller');
 
 // View user's list of event
-router.get('/lists', [authJwt.verifyToken], function (req, res) {
-    if(req.role == 'user') 
-        res.render('user/lists', {title: 'Lists'});
-    else res.status(403).send({ msg: "Require user role"});
-});
+router.get('/lists', authJwt.verifyToken, eventController.viewListEvent);
 // View event on calendar
-router.get('/home', [authJwt.verifyToken], function (req, res) {
-    if(req.role == 'user') 
-        res.render('user/home', {title: 'Home'});
-    else res.status(403).send({ msg: "Require user role"});
-});
-router.get('/', [authJwt.verifyToken], function (req, res) {
-    if(req.role == 'user') 
-        res.render('user/home', {title: 'Home'});
-    else res.status(403).send({ msg: "Require user role"});
-});
-
+router.get('/home', [authJwt.verifyToken], eventController.viewCalendarEvent);
+router.get('/', [authJwt.verifyToken], eventController.viewCalendarEvent);
 // Setting
-router.get('/setting', [authJwt.verifyToken], function (req, res) {
-    if(req.role == 'user') 
-        res.render('user/setting', {title: 'Setting'});
-    else res.status(403).send({ msg: "Require user role"});
-});
-
+router.get('/setting', [authJwt.verifyToken], accController.getInfo);
 // Render event with event id
-router.get('/event', [authJwt.verifyToken], function (req, res, next) {
-    if(req.role == 'user') 
-        res.render('user/event', {title: 'event'});
-    else res.status(403).send({ msg: "Require user role"});
-});
+router.get('/event', [authJwt.verifyToken], eventController.viewEvent);
+// Accept event invitation
+router.get('/event/accept', authJwt.verifyToken, eventController.acceptEvent);
+// Choose time for event
+router.get('/event/accept', authJwt.verifyToken, eventController.chooseTime);
 
 module.exports = router;

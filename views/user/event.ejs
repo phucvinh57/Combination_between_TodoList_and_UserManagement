@@ -68,33 +68,27 @@
             <form id="event-form" action="/create/event" method="POST">
                 <div class="event-header">
                     <label for="event-name">Event Name</label>
-                    <input type="text" id="event-name" name="eventname" value="Họp ticklab">
+                    <input type="text" id="event-name" name="eventname" value="<%= event.name %> ">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="start-time">Start Time</label>
-                    <input type="datetime-local" name="startTime" id="start-time" value="2014-01-02T11:42:13">
+                    <input class="form-control" type="datetime-local" name="startTime" id="start-time" value="<%= event['start-time'] %>">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="end-time">End Time</label>
-                    <input type="datetime-local" name="endTime" id="end-time" value="2014-01-02T18:42:13">
+                    <input class="form-control" type="datetime-local" name="endTime" id="end-time" value="<%= event['end-time'] %>">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="location">Location</label>
-                    <input type="url" name="location" id="location" value="https://goo.gl/maps/riAwtbQshf93ADJg6">
+                    <input class="form-control" type="url" name="location" id="location" value="<%= event.location %> ">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                        style="border-bottom: none; padding: 0 2px;">
-                        <option selected>Choose...</option>
-                        <option value="1">Team IT</option>
-                        <option value="2">Team cơ khí</option>
-                        <option value="3">Team điện</option>
-                    </select>
+                    <input class="form-control" type="text" value="<%= event.preference %> ">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="score">Score</label>
-                    <input type="number" name="score" id="score" min="1" max="100" value="15">
+                    <input class="form-control" type="number" name="score" id="score" min="1" max="100" value="<%= event.score %>">
                 </div>
 
                 <div id="list-attendees">
@@ -111,7 +105,7 @@
                         <li class="list-group-item person-view">
                             <span>Nguyễn Phúc Vinh</span>
                         </li>
-                        <li class="list-group-item person-view">]
+                        <li class="list-group-item person-view">
                             <span>Vũ Nguyễn Minh Huy</span>
                         </li>
                         <li class="list-group-item person-view">
@@ -130,9 +124,6 @@
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text">Recommend times</span>
-                        </div>
-                        <div class="input-group-append"></div>
-                            <button class="btn btn-info" type="button" id="add-time">Submit</button>
                         </div>
                     </div>
                     <ul class="list-group" id="list-time"
@@ -153,7 +144,11 @@
                     
                 <div class="form-group">
                     <label for="description" style="font-weight: 600; margin-bottom: -5px;">Description</label>
-                    <textarea class="form-control" id="description" rows="6"></textarea>
+                    <textarea class="form-control" id="description" rows="6"><%= event.description %></textarea>
+                </div>
+                <div style="display: flex;justify-content: space-between;">
+                    <div></div>
+                    <button class="btn btn-info" type="button" id="add-time">Submit</button>
                 </div>
             </form>
         </div>
@@ -167,15 +162,13 @@
     <script src="/javascripts/event.js"></script>
 
     <script>
-        var allInput = document.querySelectorAll('.form-attribute input, .form-attribute select, .form-attribute textarea, .ip #recommendTime, #submit, #description, #event-name');
-
-
+        var allInput = document.querySelectorAll('.form-group input, .form-group select, .form-group textarea, .ip #recommendTime, #submit, #description, #event-name');
         var counting = document.getElementsByClassName('counting')[0];
 
         for (let i of allInput) {
             i.disabled = true;
+            i.style.backgroundColor = '#fff';
         }
-
     </script>
 
     <script>

@@ -1,39 +1,23 @@
 var express = require('express');
 var router = express.Router();
-
 var authJwt = require('../middleware/authJwt');
+var accController = require('../controllers/account.controller');
+var eventController = require('../controllers/event.controller');
+// View user's list of event
+router.get('/lists', [authJwt.verifyToken], eventController.viewListEvent);
+// View event on calendar
+router.get('/home', [authJwt.verifyToken], eventController.viewCalendarEvent);
+router.get('/', [authJwt.verifyToken], eventController.viewCalendarEvent);
+// Setting
+router.get('/setting', [authJwt.verifyToken], accController.getInfo);
 
-router.get('/index', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'moderator') 
-        res.render('moderator/home', { title: 'Moderator' });
-    else res.status(403).send({ message: 'Required moderator role'})
-});
-router.get('/', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'moderator') 
-        res.render('moderator/home', { title: 'Moderator' });
-    else res.status(403).send({ message: 'Required moderator role'})
-});
-
-router.get('/lists', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'moderator') 
-        res.render('moderator/lists', { title: 'Moderator' });
-    else res.status(403).send({ message: 'Required moderator role'})
-});
-
-router.get('/setting', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'moderator') 
-        res.render('moderator/setting', { title: 'Moderator' });
-    else res.status(403).send({ message: 'Required moderator role'})
-});
-router.get('/event/create', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'moderator') 
-        res.render('moderator/new-event', { title: 'Moderator'});
-    else res.status(403).send({ message: 'Required moderator role'})
-});
-router.get('/event', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'moderator') 
-        res.render('moderator/event', { title: 'Moderator'});
-    else res.status(403).send({ message: 'Required moderator role'})
-});
+// Render event with event id
+router.get('/event', [authJwt.verifyToken], eventController.viewEvent);
+//Create event
+router.get('/event/create', authJwt.verifyToken, eventController.createEvent);
+// Delete event
+router.get('/event/delete', authJwt.verifyToken, eventController.deleteEvent);
+// Update event
+router.get('/event/delete', authJwt.verifyToken, eventController.updateEvent);
 
 module.exports = router;

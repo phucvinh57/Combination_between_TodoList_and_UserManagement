@@ -5,7 +5,6 @@ var addTimeBtn = document.getElementById('add-time');
 var listOfTime = document.getElementById('list-time');
 var deleteBtns = document.getElementsByClassName('delete');
 var allCheckBox = document.querySelectorAll('.person input');
-var memberSearch = document.getElementById('member-search');
 
 function removeVietnameseTones(str) {
     str = str.replace(/à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ/g,"a"); 
@@ -36,25 +35,7 @@ function removeVietnameseTones(str) {
     return str;
 }
 
-memberSearch.onkeyup = function () {
-    // Declare variables
-    var filter, li, a, i, txtValue;
-    filter = this.value.toUpperCase();
-    filter = removeVietnameseTones(filter);
-    li = document.getElementsByClassName('list-group-item person');
 
-    // Loop through all list items, and hide those who don't match the search query
-    for (i = 0; i < li.length; i++) {
-        a = li[i].childNodes[3];
-        txtValue = a.textContent || a.innerText;
-        txtValue = removeVietnameseTones(txtValue);
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            li[i].style.display = "";
-        } else {
-            li[i].style.display = "none";
-        }
-    }
-}
 
 for (let i of deleteBtns) {
     i.onclick = function () {

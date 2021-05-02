@@ -34,8 +34,9 @@ var logIn = function (req, res) {
         return;
     }
     res.cookie('role', user.role);
+    res.cookie('account-ID', user.ID);
+    res.cookie('isLoggedIn', true);
     req.role = user.role;
-    req.isLoggedIn = true;
     res.redirect(`/${req.role}`);
     return;
 }
@@ -44,8 +45,9 @@ var changePassword = function(req, res, next) {
     
 }
 var logOut = function(req, res, next) {
-    req.isLoggedIn = false;
-    res.clearCookie('token');
+    res.clearCookie('isLoggedIn');
+    res.clearCookie('role');
+    res.clearCookie('account-ID')
     res.redirect('/');
 }
 

@@ -11,7 +11,7 @@
     margin-bottom: 10px;
 }
 
-.form-attribute {
+/* .form-attribute {
     margin-bottom: 10px;
     font-size: 14px;
     position: relative;
@@ -28,7 +28,7 @@
     border: none;
     border-bottom: 1px solid #17a2b8;
     outline: none;
-}
+} */
 
 #event-name {
     font-weight: 600;
@@ -86,8 +86,21 @@
     border-radius: 5px;
 }
 .person {
-    padding-left: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
+.person .material-icons {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 -7px;
+    color: rgb(116, 114, 114);
+}
+.person .material-icons:hover {
+    color: tomato;
+    cursor: pointer;
+}
+
 
 .time {
     display: flex;
@@ -137,13 +150,17 @@
 #list-at:hover {
     cursor: pointer;
 }
+.at span {
+    position: relative;
+    left: -5px;
+}
 .counting {
     position: fixed;
     top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
-    height: 65%;
+    height: 75%;
     background-color: white;
     border-radius: 5px;
     z-index: 300;
@@ -177,8 +194,10 @@
 .group-btn-at {
     display: flex;
     flex-flow: row;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: center;
+    position: relative;
+    right: -10px;
 }
 .group-btn-at .rmv-at {
     font-size: 16px;

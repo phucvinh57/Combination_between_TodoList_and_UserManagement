@@ -1,51 +1,41 @@
 var express = require('express');
 var router = express.Router();
-
 var authJwt = require('../middleware/authJwt');
+var accController = require('../controllers/account.controller');
+var eventController = require('../controllers/event.controller');
+// View user's list of event
+router.get('/lists', [authJwt.verifyToken], eventController.viewListEvent);
+// View event on calendar
+router.get('/home', [authJwt.verifyToken], eventController.viewCalendarEvent);
+router.get('/', [authJwt.verifyToken], eventController.viewCalendarEvent);
 
-/* GET home page. */
-router.get('/', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'admin')
-        res.render('admin/home', { title: 'Admin' });
-    else res.status(403).send({ message: 'Required admin role'})
-});
-router.get('/home', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'admin') 
-        res.render('admin/home', { title: 'Admin' });
-    else res.status(403).send({ message: 'Required admin role'})
-});
-router.get('/event', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'admin') 
-        res.render('admin/event', { title: 'Admin' });
-    else res.status(403).send({ message: 'Required admin role'})
-});
-router.get('/event/create', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'admin') 
-        res.render('admin/new-event', { title: 'Admin' });
-    else res.status(403).send({ message: 'Required admin role'})
-});
+// Render event with event idvar express = require('express');
+var router = express.Router();
+var authJwt = require('../middleware/authJwt');
+var accController = require('../controllers/account.controller');
+var eventController = require('../controllers/event.controller');
+// View user's list of event
+router.get('/lists', [authJwt.verifyToken], eventController.viewListEvent);
+// View event on calendar
+router.get('/home', [authJwt.verifyToken], eventController.viewCalendarEvent);
+router.get('/', [authJwt.verifyToken], eventController.viewCalendarEvent);
+// Setting
+router.get('/setting', [authJwt.verifyToken], accController.getInfo);
 
-router.get('/lists', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'admin') 
-        res.render('admin/list-events', { title: 'Admin' });
-    else res.status(403).send({ message: 'Required admin role'})
-});
+// Render event with event id
+router.get('/event', [authJwt.verifyToken], eventController.viewEvent);
+//Create event
+router.get('/event/create', authJwt.verifyToken, eventController.createEvent);
+// Delete event
+router.get('/event/delete', authJwt.verifyToken, eventController.deleteEvent);
+// Update event
+router.get('/event/delete', authJwt.verifyToken, eventController.updateEvent);
 
-router.get('/accounts', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'admin') 
-        res.render('admin/accounts', { title: 'Admin' });
-    else res.status(403).send({ message: 'Required admin role'})
-});
+module.exports = router;
 
-router.get('/setting', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'admin') 
-        res.render('admin/setting', { title: 'Admin' });
-    else res.status(403).send({ message: 'Required admin role'})
-});
-router.get('/recycle-bin', authJwt.verifyToken, function(req, res, next) {
-    if(req.role === 'admin') 
-        res.status(200).send({ msg: 'Recyle Bin, which is used for recycle deleted events'});
-    else res.status(403).send({ message: 'Required admin role'})
-});
-
+router.get('/event', [authJwt.verifyToken], eventController.viewEvent);
+//Create event
+router.get('/event/create', authJwt.verifyToken, eventController.createEvent);
+// Setting
+router.get('/setting', [authJwt.verifyToken], accController.getInfo);
 module.exports = router;

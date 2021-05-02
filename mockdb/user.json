@@ -4,6 +4,32 @@
         "email": "abcd@gmail.com",
         "username": "phucvinh",
         "password": "123456",
-        "role": "user"
+        "role": "user",
+        "name": "Nguyễn Phúc Vinh",
+        "birthday": "2021-04-15T08:00:00",
+        "phone-number": "0373 395 726",
+        "github": "https://github.com/phucvinh57"
+    },
+    {
+        "ID": 2,
+        "email": "npvinh@gmail.com",
+        "username": "moderator",
+        "password": "123456",
+        "role": "mod",
+        "name": "Phúc Vinh",
+        "birthday": "2021-04-15T08:00:00",
+        "phone-number": "0373 395 726",
+        "github": "https://github.com/phucvinh57"
+    },
+    {
+        "ID": 3,
+        "email": "vinh.nguyen@gmail.com",
+        "username": "admin",
+        "password": "123456",
+        "role": "admin",
+        "name": "Phúc Vinh",
+        "birthday": "2021-04-15T08:00:00",
+        "phone-number": "0373 395 726",
+        "github": "https://github.com/phucvinh57"
     }
 ]
