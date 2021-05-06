@@ -1,0 +1,24 @@
+[
+    {
+        "userID": 1,
+        "eventID": 1,
+        "choose-time": [
+            "true",
+            "true",
+            "true"
+        ],
+        "attended": false,
+        "invite": false
+    },
+    {
+        "userID": 1,
+        "eventID": 2,
+        "choose-time": [
+            true,
+            true,
+            false
+        ],
+        "attended": false,
+        "invite": false
+    }
+]

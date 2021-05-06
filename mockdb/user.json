@@ -1,35 +1,20 @@
 [
     {
         "ID": 1,
-        "email": "abcd@gmail.com",
         "username": "phucvinh",
         "password": "123456",
-        "role": "user",
-        "name": "Nguyễn Phúc Vinh",
-        "birthday": "2021-04-15T08:00:00",
-        "phone-number": "0373 395 726",
-        "github": "https://github.com/phucvinh57"
+        "role": "user"
     },
     {
         "ID": 2,
-        "email": "npvinh@gmail.com",
         "username": "moderator",
         "password": "123456",
-        "role": "mod",
-        "name": "Phúc Vinh",
-        "birthday": "2021-04-15T08:00:00",
-        "phone-number": "0373 395 726",
-        "github": "https://github.com/phucvinh57"
+        "role": "mod"
     },
     {
         "ID": 3,
-        "email": "vinh.nguyen@gmail.com",
         "username": "admin",
         "password": "123456",
-        "role": "admin",
-        "name": "Phúc Vinh",
-        "birthday": "2021-04-15T08:00:00",
-        "phone-number": "0373 395 726",
-        "github": "https://github.com/phucvinh57"
+        "role": "admin"
     }
 ]

@@ -3,26 +3,28 @@
         "ID": 1,
         "name": "Họp IT",
         "responsible": "Nguyễn Tấn Đạt",
-        "start-time": "2021-04-29T12:00:00",
-        "end-time": "2021-04-30T12:00:00",
+        "start-time": "2021-05-06T12:00:00",
+        "end-time": "2021-05-06T13:00:00",
         "location": "Ticklab",
         "preference": "Team IT",
         "score": 15,
         "description": "Họp giao ban 2 tuần 1 lần, chia sẻ trong 2 tuần qua đã làm được những gì",
-        "annual": true
+        "annual": true,
+        "recommended-time": ["20:30 T5 ngày 6/5/2021", "08:30 T5 ngày 6/5/2021", "15:30 T5 ngày 6/5/2021"]
     },
     {
         "ID": 2,
         "responsible": "Trương Quý Phát",
         "name": "Họp Cơ Khí",
-        "start-time": "2021-04-15T08:00:00",
-        "end-time": "2021-04-15T12:00:00",
+        "start-time": "2021-05-10T08:00:00",
+        "end-time": "2021-05-10T12:00:00",
         "location": "Ticklab",
         "preference": "Team Cơ Khí",
         "score": 30,
         "description": "Họp giao ban 2 tuần 1 lần, chia sẻ trong 2 tuần qua đã làm được những gì",
         "annual": false,
-        "weekly": true
+        "weekly": true,
+        "recommended-time": ["20:30 T2 ngày 10/5/2021", "08:30 T2 ngày 10/5/2021", "15:30 T3 ngày 11/5/2021"]
     },
     {
         "ID": 3,
@@ -35,6 +37,7 @@
         "score": 30,
         "description": "Họp giao ban 2 tuần 1 lần, quản lí các task",
         "annual": false,
-        "weekly": true
+        "weekly": true,
+        "recommended-time": []
     }
 ]

@@ -18,6 +18,6 @@ router.get('/event/create', authJwt.verifyToken, eventController.createEvent);
 // Delete event
 router.get('/event/delete', authJwt.verifyToken, eventController.deleteEvent);
 // Update event
-router.get('/event/delete', authJwt.verifyToken, eventController.updateEvent);
+router.get('/event/update', authJwt.verifyToken, eventController.updateEvent);
 
 module.exports = router;

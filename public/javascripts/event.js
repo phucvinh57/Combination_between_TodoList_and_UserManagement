@@ -43,26 +43,30 @@ for (let i of deleteBtns) {
     }
 }
 
-addTimeBtn.onclick = function () {
-    if (recommendTime.value == '') return;
-    var date = recommendTime.value;
-    date = date.replaceAll('-', '/').replace('T', ' ');
-
-    var newTime = document.createElement('li');
-
-    var content = document.createElement('span');
-    content.innerText = date;
-    var deleteBtn = document.createElement('span');
-    deleteBtn.className = 'material-icons delete';
-    deleteBtn.innerText = 'clear';
+if(addTimeBtn != null) addTimeBtn.onclick = function () {
+    if (recommendTime.value == '') {
+        console.log('please input time');
+    }
+    else {
+        var date = recommendTime.value;
+        date = date.replaceAll('-', '/').replace('T', ' ');
     
-    newTime.className ='list-group-item time';
-    newTime.appendChild(content);
-    newTime.appendChild(deleteBtn);
-
-    listOfTime.appendChild(newTime);
-
-    deleteBtn.onclick = function() {
-        deleteBtn.parentNode.remove();
+        var newTime = document.createElement('li');
+    
+        var content = document.createElement('span');
+        content.innerText = date;
+        var deleteBtn = document.createElement('span');
+        deleteBtn.className = 'material-icons delete';
+        deleteBtn.innerText = 'clear';
+        
+        newTime.className ='list-group-item time';
+        newTime.appendChild(content);
+        newTime.appendChild(deleteBtn);
+    
+        listOfTime.appendChild(newTime);
+    
+        deleteBtn.onclick = function() {
+            deleteBtn.parentNode.remove();
+        }
     }
 }

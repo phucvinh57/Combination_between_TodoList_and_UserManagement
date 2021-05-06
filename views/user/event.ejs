@@ -72,11 +72,13 @@
                 </div>
                 <div class="form-group">
                     <label for="start-time">Start Time</label>
-                    <input class="form-control" type="datetime-local" name="startTime" id="start-time" value="<%= event['start-time'] %>">
+                    <input class="form-control" type="datetime-local" name="startTime" id="start-time"
+                        value="<%= event['start-time'] %>">
                 </div>
                 <div class="form-group">
                     <label for="end-time">End Time</label>
-                    <input class="form-control" type="datetime-local" name="endTime" id="end-time" value="<%= event['end-time'] %>">
+                    <input class="form-control" type="datetime-local" name="endTime" id="end-time"
+                        value="<%= event['end-time'] %>">
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>
@@ -88,7 +90,8 @@
                 </div>
                 <div class="form-group">
                     <label for="score">Score</label>
-                    <input class="form-control" type="number" name="score" id="score" min="1" max="100" value="<%= event.score %>">
+                    <input class="form-control" type="number" name="score" id="score" min="1" max="100"
+                        value="<%= event.score %>">
                 </div>
 
                 <div id="list-attendees">
@@ -102,22 +105,13 @@
                     <!--  -->
                     <ul class="list-group"
                         style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
-                        <li class="list-group-item person-view">
-                            <span>Nguyễn Phúc Vinh</span>
-                        </li>
-                        <li class="list-group-item person-view">
-                            <span>Vũ Nguyễn Minh Huy</span>
-                        </li>
-                        <li class="list-group-item person-view">
-                            
-                            <span>Trương Quý Phát</span>
-                        </li>
-                        <li class="list-group-item person-view">
-                            <span>Cù Đỗ Thanh Nhân</span>
-                        </li>
-                        <li class="list-group-item person-view">
-                            <span>Ngô Minh Hồng Thái</span>
-                        </li>
+                        <% for(let i=0; i < attendees.length; i++) { %>
+                            <li class="list-group-item person-view">
+                                <span>
+                                    <%= attendees[i].name %>
+                                </span>
+                            </li>
+                            <% } %>
                     </ul>
                 </div>
                 <div id="list-times">
@@ -128,28 +122,24 @@
                     </div>
                     <ul class="list-group" id="list-time"
                         style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
-                        <li class="list-group-item time-view">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>2021/03/17 08:00</span>
-                        </li>
-                        <li class="list-group-item time-view">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>2021/03/17 08:00</span>
-                        </li>
-                        <li class="list-group-item time-view">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>2021/03/17 08:00</span>
-                        </li>
+                        <% for(let i=0; i < event['recommended-time'].length; i++) { %>
+                            <li class="list-group-item time-view">
+                                <input class="form-check-input choose-time" type="checkbox" value="" aria-label="...">
+                                <span>
+                                    <%= event['recommended-time'][i] %>
+                                </span>
+                            </li>
+                            <% } %>
                     </ul>
-                    
-                <div class="form-group">
-                    <label for="description" style="font-weight: 600; margin-bottom: -5px;">Description</label>
-                    <textarea class="form-control" id="description" rows="6"><%= event.description %></textarea>
-                </div>
-                <div style="display: flex;justify-content: space-between;">
-                    <div></div>
-                    <button class="btn btn-info" type="button" id="add-time">Submit</button>
-                </div>
+
+                    <div class="form-group">
+                        <label for="description" style="font-weight: 600; margin-bottom: -5px;">Description</label>
+                        <textarea class="form-control" id="description" rows="6"><%= event.description %></textarea>
+                    </div>
+                    <div style="display: flex;justify-content: space-between;">
+                        <div></div>
+                        <button class="btn btn-info" type="button" id="submit-time">Submit</button>
+                    </div>
             </form>
         </div>
     </div>
@@ -190,7 +180,25 @@
                 }
             }
         }
+        $('#submit-time').on('click', function () {
+            let choose_time = [];
 
+            $('.choose-time').each(function (idx, element) {
+                console.log(element.checked);
+                choose_time.push(element.checked);
+            });
+            console.log('<%= event.ID %>');
+            $.get('event/choose-time',
+                {
+                    choose_time: choose_time,
+                    id: '<%= event.ID %>'
+                },
+                function (data) {
+                    console.log(data);
+                    alert('Submit successfully !');
+                    window.location.replace('http://localhost:3000/<%= role %>');
+                });
+        });
     </script>
 </body>
 

@@ -14,9 +14,10 @@ router.get('/', [authJwt.verifyToken], eventController.viewCalendarEvent);
 router.get('/setting', [authJwt.verifyToken], accController.getInfo);
 // Render event with event id
 router.get('/event', [authJwt.verifyToken], eventController.viewEvent);
+
 // Accept event invitation
 router.get('/event/accept', authJwt.verifyToken, eventController.acceptEvent);
 // Choose time for event
-router.get('/event/accept', authJwt.verifyToken, eventController.chooseTime);
+router.get('/event/choose-time', authJwt.verifyToken, eventController.chooseTime);
 
 module.exports = router;

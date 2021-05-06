@@ -83,14 +83,14 @@
         $(document).ready(function() {
             $("#calendar").evoCalendar({
                 calendarEvents: [
-                '<% for(let i = 0; i < joinedEvent.length; i++) { %>',
+                '<% for(let i = 0; i < event.length; i++) { %>',
                     {
-                        id: 'z<%= joinedEvent[i].ID %>',
-                        name: '<%= joinedEvent[i].name %>', // Event name (required)
-                        date: ['<%= joinedEvent[i]["start-time"] %>', '<%= joinedEvent[i]["end-time"] %>'], // Event date (required)
+                        id: 'z<%= event[i].ID %>',
+                        name: '<%= event[i].name %>', // Event name (required)
+                        date: ['<%= event[i]["start-time"] %>', '<%= event[i]["end-time"] %>'], // Event date (required)
                         type: "event", // Event type (required)
-                        description: '<%= joinedEvent[i].description %>',
-                        everyYear: '<%= joinedEvent[i].annual %>', // Same event every year (optional)
+                        description: '<%= event[i].description %>',
+                        everyYear: '<%= event[i].annual %>', // Same event every year (optional)
                         color: "#e84545", // Event custom color (optional)
                     },
                 '<% } %>'

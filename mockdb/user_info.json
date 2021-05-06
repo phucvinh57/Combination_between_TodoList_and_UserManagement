@@ -1,0 +1,26 @@
+[
+    {
+        "ID": 1,
+        "email": "abcd@gmail.com",
+        "name": "Nguyễn Phúc Vinh",
+        "birthday": "2021-04-15T08:00:00",
+        "phone-number": "0373 395 726",
+        "github": "https://github.com/phucvinh57"
+    },
+    {
+        "ID": 2,
+        "name": "Phúc Vinh",
+        "email": "vinh@gmail.com",
+        "birthday": "2021-04-15T08:00:00",
+        "phone-number": "0373 395 726",
+        "github": "https://github.com/phucvinh57"
+    },
+    {
+        "ID": 3,
+        "email": "vinh.nguyen@gmail.com",
+        "name": "Phúc Vinh",
+        "birthday": "2021-04-15T08:00:00",
+        "phone-number": "0373 395 726",
+        "github": "https://github.com/phucvinh57"
+    }
+]

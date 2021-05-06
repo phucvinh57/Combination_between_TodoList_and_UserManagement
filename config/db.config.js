@@ -1,13 +1,11 @@
 var user = require('../mockdb/user.json');
 var event = require('../mockdb/event.json');
-var event_user = require('../mockdb/event_user.json');
-var user_event = require('../mockdb/user_event.json');
-var suggestedTime = require('../mockdb/suggested-time.json')
+var join = require('../mockdb/join.json');
+var user_info = require('../mockdb/user_info.json')
 
 module.exports = {
     user,
     event,
-    event_user,
-    user_event, 
-    suggestedTime
+    join,
+    user_info
 };
