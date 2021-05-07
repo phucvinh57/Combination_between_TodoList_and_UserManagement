@@ -13,11 +13,23 @@ router.get('/setting', [authJwt.verifyToken], accController.getInfo);
 
 // Render event with event id
 router.get('/event', [authJwt.verifyToken], eventController.viewEvent);
-//Create event
+// Get event form
+router.get('/event/create-form', authJwt.verifyToken, eventController.createEventForm);
+
+// Render data of users for searching
+router.get('/event/search-members', authJwt.verifyToken, eventController.memberInfos);
+
+//Create event 
 router.get('/event/create', authJwt.verifyToken, eventController.createEvent);
 // Delete event
 router.get('/event/delete', authJwt.verifyToken, eventController.deleteEvent);
 // Update event
 router.get('/event/update', authJwt.verifyToken, eventController.updateEvent);
+
+
+// Update info
+router.post('/setting/change-info', authJwt.verifyToken, accController.updateInfo);
+// Change password
+router.post('/setting/change-password', authJwt.verifyToken, accController.changePassword);
 
 module.exports = router;

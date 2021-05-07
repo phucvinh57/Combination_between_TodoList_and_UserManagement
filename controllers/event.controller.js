@@ -1,10 +1,27 @@
 var data = require('../config/db.config');
 var fs = require('fs');
+
 var createEvent = function(req, res) {
     res.send({msg: "create event"});
 }
 
+var memberInfos = function(req, res) {
+    res.send(JSON.stringify(data.user_info));
+}
+
 var deleteEvent = function(req, res) {
+    data.join.filter(function(value, index) {
+        if(req.query.id == value.eventID) {
+            data.join.splice(index, 1);
+        }
+    });
+    data.event.filter(function(value, index) {
+        if(req.query.id == value.ID) {
+            data.event.splice(index, 1);
+        }
+    });
+    fs.writeFileSync('./mockdb/join.json', JSON.stringify(data.join));
+    fs.writeFileSync('./mockdb/event.json', JSON.stringify(data.event));
     res.send({msg: "delete event"});
 }
 
@@ -17,6 +34,7 @@ var acceptEvent = function(req, res) {
 }
 
 var chooseTime = function(req, res) {
+    console.log(req.query.choose_time);
     data.join.find(function(i, index) {
         if(i.eventID == req.query.id) {
             data.join[index]['choose-time'] = req.query.choose_time; 
@@ -25,9 +43,6 @@ var chooseTime = function(req, res) {
         return false;
     });
     fs.writeFile('./mockdb/join.json', JSON.stringify(data.join), () => {});
-    // fs.readFile('../mockdb/join.json', function(err, data) {
-    //     console.log(data);
-    // })
     res.send({msg: "Choose time for event"});
 }
 
@@ -38,15 +53,14 @@ var viewEvent = function(req, res) {
     let log = data.join.filter(function(i) {
         return event.ID == i.eventID;
     });
-    console.log(log);
     let attendees = [];
     for(let i = 0; i < log.length; ++i) {
-        let temp = data.user_info.find(function(val) {
-            return log[i].eventID == val.ID;
-        });
-        attendees.push(temp);
+        let temp = data.user_info.forEach(function(val) {
+            if(log[i].userID == val.ID) {
+                attendees.push(val);
+            }
+        })
     }
-    console.log(attendees);
     res.render(`${req.role}/event`, {
         title: 'event',
         event: event,
@@ -98,6 +112,12 @@ var viewListEvent = function(req, res) {
     });
 }
 
+var createEventForm = function(req, res) {
+    res.render(`${req.role}/new-event`, {
+        title: 'New Event'
+    });
+} 
+
 module.exports = {
     createEvent,
     deleteEvent,
@@ -106,5 +126,7 @@ module.exports = {
     viewCalendarEvent,
     viewEvent,
     acceptEvent,
-    chooseTime
+    chooseTime,
+    createEventForm,
+    memberInfos
 };

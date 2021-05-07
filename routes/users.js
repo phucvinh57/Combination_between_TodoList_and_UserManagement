@@ -20,4 +20,8 @@ router.get('/event/accept', authJwt.verifyToken, eventController.acceptEvent);
 // Choose time for event
 router.get('/event/choose-time', authJwt.verifyToken, eventController.chooseTime);
 
+// Update info
+router.post('/setting/change-info', authJwt.verifyToken, accController.updateInfo);
+// Change password
+router.post('/setting/change-password', authJwt.verifyToken, accController.changePassword);
 module.exports = router;

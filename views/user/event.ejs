@@ -128,7 +128,7 @@
                                 <span>
                                     <%= event['recommended-time'][i] %>
                                 </span>
-                            </li>
+                            </li> 
                             <% } %>
                     </ul>
 
@@ -187,7 +187,8 @@
                 console.log(element.checked);
                 choose_time.push(element.checked);
             });
-            console.log('<%= event.ID %>');
+            console.log(choose_time);
+
             $.get('event/choose-time',
                 {
                     choose_time: choose_time,

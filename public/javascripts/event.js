@@ -35,8 +35,6 @@ function removeVietnameseTones(str) {
     return str;
 }
 
-
-
 for (let i of deleteBtns) {
     i.onclick = function () {
         i.parentNode.remove();

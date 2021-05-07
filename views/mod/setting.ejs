@@ -85,37 +85,52 @@
                 </nav>
             </div>
             <div class="rightbox">
-                <form class="content" action="/adas">
+                <div class="content">
                     <h1>Personal Info</h1>
-                    <label for="name">Phone Number:</label><br>
-                    <input type="text" id="name" class="input" value="<%= user['phone-number'] %>">
-                    <label for="birthday">Birthday:</label><br>
-                    <input type="date" class="input" id="<%= user.birthday %>">
-                    <label for="email">Email:</label><br>
-                    <input type="email" class="input" id="email" value="<%= user.email %>">
-                    <label for="github">Github:</label><br>
-                    <input type="url" id="github" class="input" value="<%= user.github %>">
-                    <div class="edit-btns" style="margin-top: 50px;">
-                        <button type="button" class="btn btn-light">Cancel</button>
-                        <button type="submit" class="btn btn-info">Save</button>
+                    <div class="form-group">
+                        <label for="phone-number">Phone Number:</label>
+                        <input type="text" id="phone-number" class="form-control input" value="<%= user['phone-number'] %>">
                     </div>
-                </form>
-                <form class="content" style="display: none;">
+                    <div class="form-group">
+                        <label for="birthday">Birthday:</label>
+                        <input type="date" class="form-control input" id="birthday" value="<%= user.birthday %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control input" id="email" value="<%= user.email %>">
+                    </div>
+                    <div class="form-group">
+                        <label for="github">Github:</label><br>
+                        <input type="url" id="github" class="form-control input" value="<%= user.github %>">
+                    </div>
+                    
+                    <div class="edit-btns" style="margin-top: 50px;">
+                        <button type="button" class="btn btn-light"></button>
+                        <button type="submit" class="btn btn-info" id="update-info">Save</button>
+                    </div>
+                </div>
+                <div class="content" style="display: none;">
                     <h1>Change password</h1>
-                    <label for="old-password">Confirm your password:</label><br>
-                    <input type="password" id="old-password" class="input">
-                    <label for="new-password">New password:</label><br>
-                    <input type="password" class="input" id="new-password">
-                    <label for="retype-password">Retype new password:</label><br>
-                    <input type="password" class="input" id="retype-password">
+                    <div class="form-group">
+                        <label for="old-password">Confirm your password:</label><br>
+                        <input type="password" id="old-password" class="form-control input">
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password">New password:</label><br>
+                        <input type="password" class="form-control input" id="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label for="retype-password">Retype new password:</label><br>
+                        <input type="password" class="form-control input" id="retype-password">
+                    </div>
                     <div class="edit-btns" style="margin-top: 133px;">
                         <div></div>
-                        <button type="submit" class="btn btn-info">Save</button>
+                        <button class="btn btn-info" id="change-password">Save</button>
                     </div>
-                </form>
-                <form class="content" style="display: none;">
+                </div>
+                <div class="content" style="display: none;">
                     <div style="color: rgb(11, 104, 104); margin: 20px; padding-right: 20px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam deserunt quos voluptatibus facilis sapiente inventore illum, id ipsam autem, cum in minus? Ullam in beatae ipsum aspernatur rem fugit delectus!</div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
@@ -128,8 +143,67 @@
     <script>
         var addItemBtn = document.getElementById("add-item-btn");
         addItemBtn.onclick = function() {
-            window.location.replace("http://localhost:3000/mod/event/create");
+            window.location.replace("http://localhost:3000/mod/event/create-form");
         }
+        $('#change-password').prop('disabled', true);
+        $('#update-info').on('click', function() {
+            let phoneNumber = $("#phone-number").val();
+            let birthday = $('#birthday').val();
+            let email = $('#email').val();
+            let github = $('#github').val();
+
+            $.post('setting/change-info', 
+                {
+                    phoneNumber: phoneNumber,
+                    birthday: birthday,
+                    email: email,
+                    github: github
+                },
+                function(data) {
+                    alert(data.msg);
+                });
+        });
+
+        $('#retype-password').on('keyup', function() {
+            let old_pass = $('#old-password').val();
+            let new_pass = $('#new-password').val();
+            let retype_pass = $('#retype-password').val();
+            if(retype_pass != new_pass || retype_pass == '' || new_pass == '' || old_pass == '')
+                $('#change-password').prop('disabled', true);
+            else $('#change-password').prop('disabled', false);
+        });
+        $('#old-password').on('keyup', function() {
+            let old_pass = $('#old-password').val();
+            let new_pass = $('#new-password').val();
+            let retype_pass = $('#retype-password').val();
+            if(retype_pass != new_pass || retype_pass == '' || new_pass == '' || old_pass == '')
+                $('#change-password').prop('disabled', true);
+            else $('#change-password').prop('disabled', false);
+        });
+        $('#new-password').on('keyup', function() {
+            let old_pass = $('#old-password').val();
+            let new_pass = $('#new-password').val();
+            let retype_pass = $('#retype-password').val();
+            if(retype_pass != new_pass || retype_pass == '' || new_pass == '' || old_pass == '')
+                $('#change-password').prop('disabled', true);
+            else $('#change-password').prop('disabled', false);
+        });
+
+        $('#change-password').on('click', function() {
+            let old_pass = $('#old-password').val();
+            let new_pass = $('#new-password').val();
+            $.post('setting/change-password', 
+                {
+                    old_pass: old_pass,
+                    new_pass: new_pass
+                },
+                function(data) {
+                    alert(data.msg);
+                    $('#old-password').val('');
+                    $('#new-password').val('');
+                    $('#retype-password').val('');
+                })
+        })
     </script>
 </body>
 

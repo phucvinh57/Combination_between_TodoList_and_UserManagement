@@ -84,15 +84,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for(let i = 0; i < joinedEvent.length; ++i) { %>  
+                    <% for(let i = 0; i < event.length; ++i) { %>  
                         <tr>
-                            <td><%= joinedEvent[i].ID %></td>
-                            <td><%= joinedEvent[i].name %></td>
-                            <td><%= joinedEvent[i].location %></td>
-                            <td><%= joinedEvent[i].responsible %></td>
-                            <td><%= joinedEvent[i]['start-time'] %></td>
-                            <td><%= joinedEvent[i]['end-time'] %></td>
-                            <td><%= joinedEvent[i].preference %></td>
+                            <td><%= event[i].ID %></td>
+                            <td><%= event[i].name %></td>
+                            <td><%= event[i].location %></td>
+                            <td><%= event[i].responsible %></td>
+                            <td><%= event[i]['start-time'] %></td>
+                            <td><%= event[i]['end-time'] %></td>
+                            <td><%= event[i].preference %></td>
                         </tr>
                     <% } %> 
                 </tbody>
@@ -127,7 +127,7 @@
         $('.paginate_button a').css('color', 'white');
         $('#event-table tbody').on('click', 'tr', function () {
             let eventID = table.row(this).data()[0];
-            window.location.replace(`http://localhost:3000/mod/event/:${eventID}`);
+            window.location.replace(`http://localhost:3000/mod/event?id=${eventID}`);
         });
     </script>
 </body>

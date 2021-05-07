@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="navbar-nav">
-            <button id="add-item-btn" class="btn btn-success" href="http://localhost:3000/mod/event/create">
+            <button id="add-item-btn" class="btn btn-success">
                 <span style="margin-right: 5px;">New Event</span>
                 <span class="material-icons">
                     playlist_add
@@ -85,7 +85,7 @@
                 calendarEvents: [
                 '<% for(let i = 0; i < event.length; i++) { %>',
                     {
-                        id: 'z<%= event[i].ID %>',
+                        id: 'xz<%= event[i].ID %>',
                         name: '<%= event[i].name %>', // Event name (required)
                         date: ['<%= event[i]["start-time"] %>', '<%= event[i]["end-time"] %>'], // Event date (required)
                         type: "event", // Event type (required)
@@ -98,8 +98,12 @@
             });
             $("#calendar").evoCalendar('setTheme', 'Midnight Blue');
             $("#calendar").on('selectEvent', function(event, activeEvent) {
-                window.location.href = "http://localhost:3000/mod/event";
+                var id = activeEvent.id.slice(2);
+                window.location.href = `http://localhost:3000/mod/event?id=${id}`;
             });
+            $("#add-item-btn").on('click', function() {
+                window.location.replace(`http://localhost:3000/mod/event/create-form`);
+            })
         });
     </script>
 </body>

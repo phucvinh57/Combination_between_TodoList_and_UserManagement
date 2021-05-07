@@ -68,7 +68,8 @@
             <form id="event-form" action="/create/event" method="POST">
                 <div class="event-edit">
                     <input type="button" id="edit" value="Edit">
-                    <input type="button" id="delete-event" class="btn btn-danger" value="Delete" style="font-weight: bold;">
+                    <input type="button" id="delete-event" class="btn btn-danger" value="Delete"
+                        style="font-weight: bold;">
                     <input type="button" id="cancel" value="Discard" style="display: none;">
                     <div id="list-at">
                         <span class="material-icons"
@@ -82,20 +83,22 @@
                 </div>
                 <div class="form-group">
                     <label for="start-time">Start Time</label>
-                    <input class="form-control" type="datetime-local" name="startTime" id="start-time" value="2014-01-02T11:42:13">
+                    <input class="form-control" type="datetime-local" name="startTime" id="start-time"
+                        value="2014-01-02T11:42:13">
                 </div>
                 <div class="form-group">
                     <label for="end-time">End Time</label>
-                    <input class="form-control" type="datetime-local" name="endTime" id="end-time" value="2014-01-02T18:42:13">
+                    <input class="form-control" type="datetime-local" name="endTime" id="end-time"
+                        value="2014-01-02T18:42:13">
                 </div>
                 <div class="form-group">
                     <label for="location">Location</label>
-                    <input class="form-control" type="url" name="location" id="location" value="https://goo.gl/maps/riAwtbQshf93ADJg6">
+                    <input class="form-control" type="url" name="location" id="location"
+                        value="https://goo.gl/maps/riAwtbQshf93ADJg6">
                 </div>
                 <div class="form-group">
                     <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref"
-                        style="padding: 0 12px;">
+                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" style="padding: 0 12px;">
                         <option selected>Choose...</option>
                         <option value="1">Team IT</option>
                         <option value="2">Team cơ khí</option>
@@ -113,31 +116,22 @@
                             <span class="input-group-text" id="inputGroup-sizing-default">Add Attendees</span>
                         </div>
                         <input class="form-control" type="text" class="form-group" aria-label="Default"
-                            aria-describedby="inputGroup-sizing-default" id="member-search">
+                            aria-describedby="inputGroup-sizing-default" id="member-search" autocomplete="off">
+                        <div class="input-group-append">
+                            <button class="btn btn-info" type="button" id="add-attendee">Add</button>
+                        </div>
                     </div>
                     <!--  -->
                     <ul class="list-group"
                         style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
-                        <li class="list-group-item person">
-                            <span>Nguyễn Phúc Vinh</span>
-                            <span class="material-icons">clear</span>
-                        </li>
-                        <li class="list-group-item person">
-                            <span>Nguyễn Phúc Vinh</span>
-                            <span class="material-icons">clear</span>
-                        </li>
-                        <li class="list-group-item person">
-                            <span>Nguyễn Phúc Vinh</span>
-                            <span class="material-icons">clear</span>
-                        </li>
-                        <li class="list-group-item person">
-                            <span>Nguyễn Phúc Vinh</span>
-                            <span class="material-icons">clear</span>
-                        </li>
-                        <li class="list-group-item person">
-                            <span>Nguyễn Phúc Vinh</span>
-                            <span class="material-icons">clear</span>
-                        </li>
+                        <% for(let i=0; i < attendees.length; i++) { %>
+                            <li class="list-group-item person-view person">
+                                <span>
+                                    <%= attendees[i].name %>
+                                </span>
+                                <span class="material-icons delete">clear</span>
+                            </li>
+                            <% } %>
                     </ul>
                 </div>
                 <div id="list-times">
@@ -153,18 +147,14 @@
                     </div>
                     <ul class="list-group" id="list-time"
                         style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
-                        <li class="list-group-item time">
-                            <span>2021/03/17 08:00</span>
-                            <span class="material-icons delete">clear</span>
-                        </li>
-                        <li class="list-group-item time">
-                            <span>2021/03/17 08:00</span>
-                            <span class="material-icons delete">clear</span>
-                        </li>
-                        <li class="list-group-item time">
-                            <span>2021/03/17 08:00</span>
-                            <span class="material-icons delete">clear</span>
-                        </li>
+                        <% for(let i=0; i < event['recommended-time'].length; i++) { %>
+                            <li class="list-group-item time">
+                                <span>
+                                    <%= event['recommended-time'][i] %>
+                                </span>
+                                <span class="material-icons delete">clear</span>
+                            </li>
+                            <% } %>
                     </ul>
                 </div>
                 <div class="form-group">
@@ -238,7 +228,7 @@
             <div></div>
             <input type="submit" name="roll_call" role="button" class="btn btn-info">
         </div>
-        
+
     </div>
 
 
@@ -299,8 +289,8 @@
     <script>
         var searchAttendees = document.getElementById('search-at');
         var rmvAtBtns = document.getElementsByClassName('rmv-at');
-        for(let i of rmvAtBtns) {
-            i.onclick = function() {
+        for (let i of rmvAtBtns) {
+            i.onclick = function () {
                 i.parentNode.parentNode.remove();
             }
         }
@@ -320,7 +310,22 @@
                 }
             }
         }
-        
+        $('#delete-event').on('click', function () {
+            $.get('event/delete',
+                {
+                    id: '<%= event.ID %>'
+                },
+                function (data) {
+                    console.log(data);
+                    alert('Delete successfully !');
+                    window.location.replace('http://localhost:3000/<%= role %>')
+                })
+        });
+        $('#member-search').autoComplete({
+            resolverSettings: {
+                url: 1
+            }
+        })
     </script>
 </body>
 

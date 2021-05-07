@@ -31,7 +31,7 @@
 
         </div>
         <div class="navbar-nav">
-            <button id="add-item-btn" class="btn btn-success" href="http://localhost:3000/mod/event/create">
+            <button id="add-item-btn" class="btn btn-success" href="http://localhost:3000/admin/event/create">
                 <span style="margin-right: 5px;">New Event</span>
                 <span class="material-icons">
                     playlist_add
@@ -46,7 +46,7 @@
                     <span style="margin-left: 5px;"><%= user.name %></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-btn">
-                    <a class="dropdown-item" href="http://localhost:3000/mod/setting">Setting</a>
+                    <a class="dropdown-item" href="http://localhost:3000/admin/setting">Setting</a>
                     <form action="/auth/logout" method="POST">
                         <input class="dropdown-item" type="submit" value="Log out">
                     </form>
@@ -57,18 +57,22 @@
 
     <div class="main">
         <div class="sidebar" style="left: -220px;">
-            <a href="http://localhost:3000/mod" class="link">
+            <a href="http://localhost:3000/admin" class="link">
                 <span class="material-icons">home</span>
                 <span>Home</span>
             </a>
             <a href="#" class="link" id="drop">
                 <span class="material-icons">dns</span>
-                <span>Lists</span>
+                <span>Events</span>
             </a>
-            <a href="#" class="link">
-                <span class="material-icons">assignment_turned_in</span>
-                <span>Completed List</span>
+            <a href="http://localhost:3000/admin/accounts" class="link" id="drop">
+                <span class="material-icons">supervisor_account</span>
+                <span>Accounts</span>
             </a>
+            <!-- <a href="http://localhost:3000/admin/recycle-bin" class="link">
+                <span class="material-icons">delete</span>
+                <span>Recycle Bin</span>
+            </a> -->
         </div>
         <div class="main-content">
             <table id="event-table" class="display">
@@ -84,15 +88,15 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for(let i = 0; i < joinedEvent.length; ++i) { %>  
+                    <% for(let i = 0; i < event.length; ++i) { %>  
                         <tr>
-                            <td><%= joinedEvent[i].ID %></td>
-                            <td><%= joinedEvent[i].name %></td>
-                            <td><%= joinedEvent[i].location %></td>
-                            <td><%= joinedEvent[i].responsible %></td>
-                            <td><%= joinedEvent[i]['start-time'] %></td>
-                            <td><%= joinedEvent[i]['end-time'] %></td>
-                            <td><%= joinedEvent[i].preference %></td>
+                            <td><%= event[i].ID %></td>
+                            <td><%= event[i].name %></td>
+                            <td><%= event[i].location %></td>
+                            <td><%= event[i].responsible %></td>
+                            <td><%= event[i]['start-time'] %></td>
+                            <td><%= event[i]['end-time'] %></td>
+                            <td><%= event[i].preference %></td>
                         </tr>
                     <% } %> 
                 </tbody>
@@ -127,7 +131,7 @@
         $('.paginate_button a').css('color', 'white');
         $('#event-table tbody').on('click', 'tr', function () {
             let eventID = table.row(this).data()[0];
-            window.location.replace(`http://localhost:3000/mod/event/:${eventID}`);
+            window.location.replace(`http://localhost:3000/admin/event?id=${eventID}`);
         });
     </script>
 </body>

@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="navbar-nav">
-            <button id="add-item-btn" class="btn btn-success" href="http://localhost:3000/mod/event/create">
+            <button id="add-item-btn" class="btn btn-success" href="http://localhost:3000/admin/event/create">
                 <span style="margin-right: 5px;">New Event</span>
                 <span class="material-icons">
                     playlist_add
@@ -42,7 +42,7 @@
                     <span style="margin-left: 5px;"><%= user.name %> </span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="user-btn">
-                    <a class="dropdown-item" href="http://localhost:3000/mod/setting">Setting</a>
+                    <a class="dropdown-item" href="http://localhost:3000/admin/setting">Setting</a>
                     <form action="/auth/logout" method="POST">
                         <input class="dropdown-item" type="submit" value="Log out">
                     </form>
@@ -57,14 +57,18 @@
                 <span class="material-icons">home</span>
                 <span>Home</span>
             </a>
-            <a href="http://localhost:3000/mod/lists" class="link" id="drop">
-                    <span class="material-icons">dns</span>
-                    <span>Lists</span>
-                </a>
-            <a href="#" class="link">
-                <span class="material-icons">assignment_turned_in</span>
-                <span>Completed List</span>
+            <a href="http://localhost:3000/admin/lists" class="link" id="drop">
+                <span class="material-icons">dns</span>
+                <span>Events</span>
             </a>
+            <a href="http://localhost:3000/admin/accounts" class="link" id="drop">
+                <span class="material-icons">supervisor_account</span>
+                <span>Accounts</span>
+            </a>
+            <!-- <a href="http://localhost:3000/admin/recycle-bin" class="link">
+                <span class="material-icons">delete</span>
+                <span>Recycle Bin</span>
+            </a> -->
         </div>
         <div class="main-content">
             <!-- To do -->
@@ -83,14 +87,14 @@
         $(document).ready(function() {
             $("#calendar").evoCalendar({
                 calendarEvents: [
-                '<% for(let i = 0; i < joinedEvent.length; i++) { %>',
+                '<% for(let i = 0; i < event.length; i++) { %>',
                     {
-                        id: 'z<%= joinedEvent[i].ID %>',
-                        name: '<%= joinedEvent[i].name %>', // Event name (required)
-                        date: ['<%= joinedEvent[i]["start-time"] %>', '<%= joinedEvent[i]["end-time"] %>'], // Event date (required)
+                        id: 'z<%= event[i].ID %>',
+                        name: '<%= event[i].name %>', // Event name (required)
+                        date: ['<%= event[i]["start-time"] %>', '<%= event[i]["end-time"] %>'], // Event date (required)
                         type: "event", // Event type (required)
-                        description: '<%= joinedEvent[i].description %>',
-                        everyYear: '<%= joinedEvent[i].annual %>', // Same event every year (optional)
+                        description: '<%= event[i].description %>',
+                        everyYear: '<%= event[i].annual %>', // Same event every year (optional)
                         color: "#e84545", // Event custom color (optional)
                     },
                 '<% } %>'
@@ -98,7 +102,7 @@
             });
             $("#calendar").evoCalendar('setTheme', 'Midnight Blue');
             $("#calendar").on('selectEvent', function(event, activeEvent) {
-                window.location.href = "http://localhost:3000/mod/event";
+                window.location.href = "http://localhost:3000/admin/event";
             });
         });
     </script>
