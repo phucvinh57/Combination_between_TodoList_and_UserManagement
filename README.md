@@ -1,4 +1,6 @@
 ## Project for learning software engineering, about event management
+
+### API Design
 ***
 **User:	(/user)**  
 |Status    | Name 					| Description 				|
