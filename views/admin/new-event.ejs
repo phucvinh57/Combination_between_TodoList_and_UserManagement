@@ -63,77 +63,72 @@
                 <span class="material-icons">supervisor_account</span>
                 <span>Accounts</span>
             </a>
-            <!-- <a href="http://localhost:3000/admin/recycle-bin" class="link">
-                <span class="material-icons">delete</span>
-                <span>Recycle Bin</span>
-            </a> -->
         </div>
         <div class="main-content">
-            <form id="event-form" action="/create/event" method="POST">
+            <form id="event-form">
                 <div class="event-header">
                     <label for="event-name">Event Name</label>
                     <input type="text" id="event-name" name="eventname" value="New Event">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="start-time">Start Time</label>
-                    <input type="datetime-local" name="startTime" id="start-time">
+                    <input class="form-control" type="datetime-local" name="startTime" id="start-time">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="end-time">End Time</label>
-                    <input type="datetime-local" name="endTime" id="end-time">
+                    <input class="form-control" type="datetime-local" name="endTime" id="end-time">
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="location">Location</label>
-                    <input type="url" name="location" id="location">
+                    <input class="form-control" type="url" name="location" id="location">
                 </div>
-                <div class="form-attribute">
-                    <label for="scale">Scale</label>
-                    <select name="" id="">
-                        <option value="cokhi">Team cơ khí</option>
-                        <option value="dien">Team Điện</option>
-                        <option value="it">Team IT</option>
+                <div class="form-group">
+                    <label class="my-1 mr-2" for="preference">Preference</label>
+                    <select class="custom-select my-1 mr-sm-2" id="preference" style="padding: 0 12px;">
+                        <option selected>Choose...</option>
+                        <option value="1">Team IT</option>
+                        <option value="2">Team cơ khí</option>
+                        <option value="3">Team điện</option>
                     </select>
                 </div>
-                <div class="form-attribute">
+                <div class="form-group">
                     <label for="score">Score</label>
-                    <input type="number" name="score" id="score" min="1" max="100">
+                    <input class="form-control" type="number" name="score" id="score" min="1" max="100">
                 </div>
 
-                
                 <div id="list-attendees">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Add Attendees</span>
+                            <span class="input-group-text">Add Attendees</span>
                         </div>
-                        <input type="text" class="form-control" aria-label="Default"
+                        <input class="form-control" type="text" aria-label="Default"
                             aria-describedby="inputGroup-sizing-default" id="member-search">
                     </div>
-                    <!--  -->
-                    <ul class="list-group"
+
+                    <div id="suggestion" class="list-group">
+                        <div class="list-group-item team">
+                            <span class="material-icons">groups</span>
+                            <span>Team IT</span>
+                        </div>
+                        <div class="list-group-item team">
+                            <span class="material-icons">groups</span>
+                            <span>Team Cơ khí</span>
+                        </div>
+                        <div class="list-group-item team">
+                            <span class="material-icons">groups</span>
+                            <span>Team Điện</span>
+                        </div>
+                        <ul class="list-group" id="search-result">
+                            <!-- <li class="list-group-item">Nguyễn Phúc Vinh</li> -->
+                        </ul>
+                    </div>
+
+
+                    <ul class="list-group" id="list-added"
                         style="overflow-y: scroll; max-height: 180px; margin-bottom: 30px; margin-top: -17px;">
-                        <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>Nguyễn Phúc Vinh</span>
-                        </li>
-                        <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>Vũ Nguyễn Minh Huy</span>
-                        </li>
-                        <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>Trương Quý Phát</span>
-                        </li>
-                        <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>Cù Đỗ Thanh Nhân</span>
-                        </li>
-                        <li class="list-group-item person">
-                            <input class="form-check-input me-1" type="checkbox" value="" aria-label="...">
-                            <span>Ngô Minh Hồng Thái</span>
-                        </li>
                     </ul>
                 </div>
-                
+
                 <div id="list-times">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
@@ -167,9 +162,8 @@
                 </div>
                 <div style="display: flex; justify-content: space-between;">
                     <div></div>
-                    <input type="submit" id="submit" value="Save">
+                    <input type="button" role="button" id="submit" value="Create">
                 </div>
-
             </form>
         </div>
     </div>
@@ -178,8 +172,79 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/xcash/bootstrap-autocomplete@master/dist/latest/bootstrap-autocomplete.min.js"></script>
     <script src="/javascripts/sidebar.js"></script>
     <script src="/javascripts/event.js"></script>
+
+    <script>
+        $('.team').hide();
+        $('#member-search').keyup(function () {
+            $('#search-result').html('');
+            var value = $('#member-search').val();
+            if(value != '') $('.team').show();
+            else $('.team').hide();
+            $.get('member-search', {
+                    value: value
+                },
+                function (data) {
+                    for(let i of data.members) {
+                        $('#search-result').append(`<li class="list-group-item">${i.name}</li>`)
+                    }
+                    $('#search-result .list-group-item').each(function(index, elem) {
+                        elem.addEventListener('click', function() {
+                            let newAttendees = document.createElement('li');
+                            newAttendees.className = 'list-group-item person-view person';
+                            newAttendees.innerHTML = `<span>${this.innerHTML}</span>\n
+                                <span class="material-icons delete">clear</span>\n`;
+                            $('#list-added').append(newAttendees);
+                            newAttendees.lastElementChild.addEventListener('click', function() {
+                                newAttendees.remove();
+                            });
+                        });
+                    });
+                });
+        });
+        $(window).click(function(event) {
+            if(!$(event.target).is('#member-search')) {
+                $('.team').hide();
+                $('#search-result').html('');
+            }
+        });
+        $('.team').on('click', function() {
+            var preference = this.lastElementChild.innerText;
+            console.log(preference);
+            $.get('get-team', {
+                preference: preference
+            }, function(data) {
+                for(let i of data.attendees) {
+                    let newAttendees = document.createElement('li');
+                    newAttendees.className = 'list-group-item person-view person';
+                    newAttendees.innerHTML = `<span class='att-name'>${i.name}</span>\n
+                        <span class="material-icons delete">clear</span>\n`;
+                    $('#list-added').append(newAttendees);
+                    newAttendees.lastElementChild.addEventListener('click', function() {
+                        newAttendees.remove();
+                    });
+                }
+            });
+            $('#member-search').val('');
+        })
+        $('#submit').on('click', function () {
+            // let name = $('#event-name').val();
+            // let startTime = $('#start-time').val();
+            // let endTime = $('#end-time').val();
+            // let preference = $('#preference').val();
+            // let location = $('#location').val();
+            // let score = $('#score').val();
+            $('.att-name').each(function(index, value) {
+                console.log(value);
+            });
+            // $.get('create', 
+            // function (data) {
+                
+            // });
+        });
+    </script>
 </body>
 
 </html>

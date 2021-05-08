@@ -63,10 +63,6 @@
                 <span class="material-icons">supervisor_account</span>
                 <span>Accounts</span>
             </a>
-            <!-- <a href="http://localhost:3000/admin/recycle-bin" class="link">
-                <span class="material-icons">delete</span>
-                <span>Recycle Bin</span>
-            </a> -->
         </div>
         <div class="main-content">
             <form id="event-form" action="/create/event" method="POST">
@@ -101,8 +97,8 @@
                         value="https://goo.gl/maps/riAwtbQshf93ADJg6">
                 </div>
                 <div class="form-group">
-                    <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Preference</label>
-                    <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref" style="padding: 0 12px;">
+                    <label class="my-1 mr-2" for="preference">Preference</label>
+                    <select class="custom-select my-1 mr-sm-2" id="preference" style="padding: 0 12px;">
                         <option selected>Choose...</option>
                         <option value="1">Team IT</option>
                         <option value="2">Team cơ khí</option>
@@ -235,7 +231,6 @@
 
     </div>
 
-
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
@@ -325,11 +320,6 @@
                     window.location.replace('http://localhost:3000/<%= role %>')
                 })
         });
-        $('#member-search').autoComplete({
-            resolverSettings: {
-                url: 1
-            }
-        })
     </script>
 </body>
 

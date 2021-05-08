@@ -4,8 +4,9 @@
         "email": "npvinh@gmail.com",
         "name": "Nguyễn Phúc Vinh",
         "birthday": "2001-07-05",
-        "phone-number": "0373395726",
-        "github": "https://github.com/phucvinh57"
+        "phone-number": "0373 395 726",
+        "github": "https://github.com/phucvinh57",
+        "preference": "Team IT"
     },
     {
         "ID": 2,
@@ -13,14 +14,16 @@
         "email": "vinh@gmail.com",
         "birthday": "2021-04-15",
         "phone-number": "0373 395 726",
-        "github": "https://github.com/phucvinh57"
+        "github": "https://github.com/phucvinh57",
+        "preference": "Team IT"
     },
     {
         "ID": 3,
-        "email": "vinh.nguyen@gmail.com",
+        "email": "vinh.nguyen05072001@hcmut.edu.vn",
         "name": "Vinh",
-        "birthday": "2021-04-15",
+        "birthday": "2001-07-05",
         "phone-number": "0373 395 726",
-        "github": "https://github.com/phucvinh57"
+        "github": "https://github.com/phucvinh57",
+        "preference": "Team IT"
     }
 ]

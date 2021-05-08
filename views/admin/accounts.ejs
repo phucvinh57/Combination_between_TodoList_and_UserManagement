@@ -74,90 +74,75 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Username</th>
+                        <th>Name</th>
                         <th>Phone number</th>
-                        <th>Occupation</th>
-                        <th>Mod</th>
+                        <th>Preference</th>
+                        <th>Role</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1915940</td>
-                        <td>Nguyễn Phúc Vinh</td>
-                        <td>0373 395 726</td>
-                        <td>Student</td>
-                        <td class="mod">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="mod1">
-                                <label class="custom-control-label" for="mod1"></label>
-                            </div>
-                            <span class="material-icons delete-user">delete</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1915940</td>
-                        <td>Nguyễn Phúc Vinh</td>
-                        <td>0373 395 726</td>
-                        <td>Student</td>
-                        <td class="mod">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="mod2">
-                                <label class="custom-control-label" for="mod2"></label>
-                            </div>
-                            <span class="material-icons delete-user">delete</span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1915940</td>
-                        <td>Nguyễn Phúc Vinh</td>
-                        <td>0373 395 726</td>
-                        <td>Student</td>
-                        <td class="mod">
-                            <div class="custom-control custom-switch">
-                                <input type="checkbox" class="custom-control-input" id="mod3">
-                                <label class="custom-control-label" for="mod3"></label>
-                            </div>
-                            <span class="material-icons delete-user">delete</span>
-                        </td>
-                    </tr>
+                    <% for( let i=0; i < user.length; i++ ) { %>
+                        <tr>
+                            <td>
+                                <%= user[i].ID %>
+                            </td>
+                            <td>
+                                <%= user[i].name %>
+                            </td>
+                            <td>
+                                <%= user[i]['phone-number'] %>
+                            </td>
+                            <td>
+                                <%= user[i].preference %>
+                            </td>
+                            <td>
+                                <%= user[i].role %>
+                            </td>
+                        </tr>
+                        <% } %>
                 </tbody>
                 <tfoot>
                     <tr>
                         <th>ID</th>
-                        <th>Username</th>
+                        <th>Mame</th>
                         <th>Phone number</th>
-                        <th>Occupation</th>
-                        <th>Mod</th>
+                        <th>Preference</th>
+                        <th>Role</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
     </div>
-    <!-- <div id="user-card">
+    <div id="user-card">
         <div id="left-card">
-            <img src="/images/avatar.png" alt="Avatar" id="avatar">
-            <span>Phúc Vinh</span>
+            <img src="/images/img_avatar.png" alt="Avatar" id="avatar">
+            <span id="name"></span>
         </div>
         <div id="right-card">
-
-            <div class="title">Information</div>
-            <div class="info">
-                <span class="label">Name</span>
-                <span class="content">Nguyễn Phúc Vinh</span>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" value="Nguyen Phuc Vinh">
             </div>
-            <div class="info">
-                <span class="label">Email</span>
-                <span class="content">Phone</span>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" placeholder="******">
             </div>
-            
-            <span>Email</span>
-            <span>Phone</span>
-            <div class="title">Contact</div>
-            <a href="fb"></a>
-            <a href=""></a>
+            <div class="form-group">
+                <label for="role">Role</label>
+                <select class="form-control" id="role">
+                    <option>User</option>
+                    <option>Admin</option>
+                    <option>Moderator</option>
+                </select>
+            </div>
+            <div id="button">
+                <button type="button" class="btn btn-info" id="edit">Edit</button>
+                <button type="button" class="btn btn-light" id="discard">Discard</button>
+                <button type="button" class="btn btn-info" id="save">Save</button>
+            </div>
         </div>
-        <span class="material-icons" id="close-card">close</span>
-    </div> -->
+        <span class="material-icons" id="close-card">clear</span>
+    </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -166,6 +151,10 @@
     <script src="/javascripts/sidebar.js"></script>
 
     <script>
+        $('#user-card').hide();
+        $('#save').hide();
+        $('#discard').hide();
+        $('.form-group select, .form-group input').prop('disabled', true);
         var table = $('#account-table').DataTable({
             'aoColumnDefs': [{
                 'bSortable': false,
@@ -180,10 +169,41 @@
         $('.paginate_button a').css('color', 'white');
         $('#account-table tbody').on('click', 'tr', function () {
             var data = table.row(this).data();
-            alert('You clicked on ' + data[0] + '\'s row');
+            console.log(data[1]);
+            $('#user-card').show();
+            $('#name').text(data[1]);
+            $('.main-content').css('filter', 'blur(5px)');
         });
-        $('.custom-control').on('click', function (event) {
-            event.stopPropagation();
+        $('#close-card').click(function () {
+            $('#user-card').hide();
+            $('.main-content').css('filter', 'blur(0px)');
+        });
+        $('#edit').on('click', function(){
+            $('.form-group select, .form-group input').prop('disabled', false);
+            $('#discard').show();
+            $('#save').show();
+            $('#edit').hide()
+        });
+        $('#discard').on('click', function(){
+            $('.form-group select, .form-group input').prop('disabled', true);
+            $('#edit').show();
+            $('#save').hide();
+            $('#discard').hide()
+        });
+        $('#save').on('click', function() {
+            $.post('accounts/edit', {
+                    username: $('#username').val(),
+                    password: $('#password').val(), 
+                    role: $('#role').val()
+                }, function(data) {
+                    alert(data.msg)
+                });
+        })
+        $(window).on('click', function(e) {
+            if($(e.target).is('#user-card')){
+                $('#user-card').hide();
+                $('.main-content').css('filter', 'blur(0px)');
+            }
         })
     </script>
 </body>

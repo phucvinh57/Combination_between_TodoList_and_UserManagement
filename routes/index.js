@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var authJwt = require('../middleware/authJwt');
 
 /* GET home page. */
 router.get('/', function(req, res) {

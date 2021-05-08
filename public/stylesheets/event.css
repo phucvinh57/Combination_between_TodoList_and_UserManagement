@@ -77,10 +77,6 @@
     margin: 0 -7px;
     color: rgb(116, 114, 114);
 }
-.person .material-icons:hover {
-    color: tomato;
-    cursor: pointer;
-}
 
 
 .time {
@@ -201,4 +197,35 @@
 }
 .time-view {
     padding-left: 35px;
+}
+
+#suggestion {
+    position: absolute;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    overflow-y: scroll; 
+    max-height: 250px; 
+    margin-bottom: 17px; 
+    margin-top: -17px;
+    left: 20.5%;
+    width: 76%;
+    z-index: 10;
+}
+
+.team {
+    display: flex; 
+    align-items: center;
+    font-weight: bold;
+    text-decoration: #5e5e5e;
+}
+.team span:first-child {
+    margin-right: 5px;
+}
+.team:hover {
+    background-color: #e7e7e7;
+    cursor: pointer;
+}
+#search-result .list-group-item:hover {
+    background-color: #e7e7e7;
+    cursor: pointer;
 }

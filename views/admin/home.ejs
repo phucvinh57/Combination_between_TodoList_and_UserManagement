@@ -28,7 +28,7 @@
             </div>
         </div>
         <div class="navbar-nav">
-            <button id="add-item-btn" class="btn btn-success" href="http://localhost:3000/admin/event/create">
+            <button id="add-item-btn" class="btn btn-success">
                 <span style="margin-right: 5px;">New Event</span>
                 <span class="material-icons">
                     playlist_add
@@ -65,10 +65,6 @@
                 <span class="material-icons">supervisor_account</span>
                 <span>Accounts</span>
             </a>
-            <!-- <a href="http://localhost:3000/admin/recycle-bin" class="link">
-                <span class="material-icons">delete</span>
-                <span>Recycle Bin</span>
-            </a> -->
         </div>
         <div class="main-content">
             <!-- To do -->
@@ -89,7 +85,7 @@
                 calendarEvents: [
                 '<% for(let i = 0; i < event.length; i++) { %>',
                     {
-                        id: 'z<%= event[i].ID %>',
+                        id: 'zx<%= event[i].ID %>',
                         name: '<%= event[i].name %>', // Event name (required)
                         date: ['<%= event[i]["start-time"] %>', '<%= event[i]["end-time"] %>'], // Event date (required)
                         type: "event", // Event type (required)
@@ -102,8 +98,12 @@
             });
             $("#calendar").evoCalendar('setTheme', 'Midnight Blue');
             $("#calendar").on('selectEvent', function(event, activeEvent) {
-                window.location.href = "http://localhost:3000/admin/event";
+                var id = activeEvent.id.slice(2);
+                window.location.href = `http://localhost:3000/admin/event?id=${id}`;
             });
+            $("#add-item-btn").on('click', function() {
+                window.location.replace(`http://localhost:3000/admin/event/create-form`);
+            })
         });
     </script>
 </body>
