@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- Add the evo-calendar.css for styling -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.2/evo-calendar/css/evo-calendar.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.3/evo-calendar/css/evo-calendar.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/evo-calendar@1.1.3/evo-calendar/css/evo-calendar.midnight-blue.min.css">
     <link rel="stylesheet" href="/stylesheets/navigation-bar.css">
     <link rel="stylesheet" href="/stylesheets/home.css">
@@ -85,12 +85,12 @@
                 calendarEvents: [
                 '<% for(let i = 0; i < event.length; i++) { %>',
                     {
-                        id: 'zx<%= event[i].ID %>',
+                        id: 'mn<%= event[i].ID %>',
                         name: '<%= event[i].name %>', // Event name (required)
                         date: ['<%= event[i]["start-time"] %>', '<%= event[i]["end-time"] %>'], // Event date (required)
                         type: "event", // Event type (required)
                         description: '<%= event[i].description %>',
-                        everyYear: '<%= event[i].annual %>', // Same event every year (optional)
+                        badge: '<%= event[i].preference %>',
                         color: "#e84545", // Event custom color (optional)
                     },
                 '<% } %>'

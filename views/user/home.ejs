@@ -84,7 +84,8 @@
                         date: ['<%= event[i]["start-time"] %>', '<%= event[i]["end-time"] %>'], // Event date (required)
                         type: "event", // Event type (required)
                         description: '<%= event[i].description %>',
-                        everyYear: '<%= event[i].annual %>', // Same event every year (optional)
+                        badge: '<%= event[i].preference %>',
+                        //everyYear: '<%= event[i].annual %>', // Same event every year (optional)
                         color: "#e84545", // Event custom color (optional)
                     },
                 '<% } %>'

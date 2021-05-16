@@ -20,11 +20,11 @@ router.post('/accounts/edit', authJwt.verifyToken, accController.editAccount);
 // Get event form
 router.get('/event/create-form', authJwt.verifyToken, eventController.createEventForm);
 //Create event
-router.get('/event/create', authJwt.verifyToken, eventController.createEvent);
+router.post('/event/create', authJwt.verifyToken, eventController.createEvent);
 // Delete event
 router.get('/event/delete', authJwt.verifyToken, eventController.deleteEvent);
 // Update event
-router.get('/event/update', authJwt.verifyToken, eventController.updateEvent);
+router.post('/event/update', authJwt.verifyToken, eventController.updateEvent);
 
 router.get('/event/member-search', authJwt.verifyToken, accController.memberSearch);
 router.get('/event/get-team', authJwt.verifyToken, accController.getTeamMember);

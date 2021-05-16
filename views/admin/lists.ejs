@@ -129,6 +129,9 @@
             let eventID = table.row(this).data()[0];
             window.location.replace(`http://localhost:3000/admin/event?id=${eventID}`);
         });
+        $("#add-item-btn").on('click', function() {
+            window.location.replace(`http://localhost:3000/admin/event/create-form`);
+        })
     </script>
 </body>
 

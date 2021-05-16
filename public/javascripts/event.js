@@ -41,18 +41,36 @@ for (let i of deleteBtns) {
     }
 }
 
+function formatTime(dateString) {
+    let date = new Date(dateString)
+    let day;
+    switch(date.getDay()) {
+        case 0:
+            day = 'CN';
+            break;
+        default:
+            day = `T${date.getDay() + 1}`
+    }
+
+    let arr = date.toLocaleString().split(',');
+    arr[1] = arr[1].slice(1);
+    arr[1] = arr[1].slice(0, 4) + arr[1].slice(7);
+    let a = arr[0].split('/');
+    arr[0] = a[1] + '/' + a[0] + '/' + a[2];
+    return arr[1] + ', ' + day + ' ngày ' + arr[0];
+}
+
 if(addTimeBtn != null) addTimeBtn.onclick = function () {
     if (recommendTime.value == '') {
         console.log('please input time');
     }
     else {
         var date = recommendTime.value;
-        date = date.replaceAll('-', '/').replace('T', ' ');
-    
         var newTime = document.createElement('li');
     
         var content = document.createElement('span');
-        content.innerText = date;
+        content.className = 'time-value';
+        content.innerText = formatTime(date);
         var deleteBtn = document.createElement('span');
         deleteBtn.className = 'material-icons delete';
         deleteBtn.innerText = 'clear';

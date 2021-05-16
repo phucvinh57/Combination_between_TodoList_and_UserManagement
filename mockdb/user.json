@@ -2,19 +2,37 @@
     {
         "ID": 1,
         "username": "phucvinh",
-        "password": "npvinh",
+        "password": "1111",
         "role": "user"
     },
     {
         "ID": 2,
         "username": "moderator",
-        "password": "123456",
+        "password": "1111",
         "role": "mod"
     },
     {
         "ID": 3,
         "username": "admin",
-        "password": "npvinh",
+        "password": "1111",
         "role": "admin"
+    },
+    {
+        "ID": 4,
+        "username": "thanhnhan",
+        "password": "1111",
+        "role": "user"
+    },
+    {
+        "ID": 5,
+        "username": "minhhuy",
+        "password": "1111",
+        "role": "user"
+    },
+    {
+        "ID": 6,
+        "username": "thaingo",
+        "password": "1111",
+        "role": "user"
     }
 ]

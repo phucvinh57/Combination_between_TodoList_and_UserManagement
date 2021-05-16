@@ -17,7 +17,7 @@ router.get('/event', [authJwt.verifyToken], eventController.viewEvent);
 router.get('/event/create-form', authJwt.verifyToken, eventController.createEventForm);
 
 // Render data of users for searching
-router.get('/event/search-members', authJwt.verifyToken, eventController.memberInfos);
+router.get('/event/member-search', authJwt.verifyToken, accController.memberSearch);
 
 //Create event 
 router.get('/event/create', authJwt.verifyToken, eventController.createEvent);

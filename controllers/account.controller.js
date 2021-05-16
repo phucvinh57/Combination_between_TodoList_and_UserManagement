@@ -32,9 +32,8 @@ function removeVietnameseTones(str) {
 
 var getInfo = function(req, res) { 
     let user = data.user_info.find(function(value){
-        return req.accID == value['ID'];
+        return req.accID == value.ID;
     });
-    console.log(user);
     res.render(`${req.role}/setting`, {
         title: 'Setting',
         user: user
@@ -73,20 +72,26 @@ var updateInfo = function(req, res) {
 }
 
 var listAccounts = function(req, res) {
-    let user = data.user_info;
+    let user = JSON.parse(JSON.stringify(data.user_info));
     data.user.forEach(function(value, index) {
         user[index].role = value.role;
     });
+    var username;
+    data.user_info.find(function(value) {
+        if(value.ID == req.accID) {
+            username = value.name;
+            return true;
+        }
+        return false;
+    })
     res.render('admin/accounts', {
         title: "Accounts",
-        user: user
+        user: user,
+        username: username
     })
 }
 
 var editAccount = function(req, res) {
-    console.log(req.body.username);
-    console.log(req.body.password);
-    console.log(req.body.role);
     data.user.find(function(value, index) {
         if(req.accID == value.ID) {
             data.user[index].role = req.body.role.toLowerCase(); 
@@ -101,12 +106,18 @@ var editAccount = function(req, res) {
 }
 var memberSearch = function(req, res) {
     let queryString = req.query.value.toUpperCase();
-    console.log(queryString);
-    var members = data.user_info.filter(function(value) {
+    var _members = data.user_info.filter(function(value) {
         var name = removeVietnameseTones(value.name);
         return name.toUpperCase().indexOf(queryString) > -1 && queryString != ''; 
     })
-    console.log(members);
+    var members = JSON.parse(JSON.stringify(_members));
+    members.find(function(value, index) {
+        if(value.ID == req.accID) {
+            members.splice(index, 1);
+            return true;
+        }
+        return false;
+    })
     res.send({members: members});
 }
 
@@ -117,6 +128,10 @@ var getTeamMember = function(req, res) {
     res.send({ attendees: attendees});
 }
 
+var deleteAccount = function(req, res) {
+
+}
+
 module.exports = {
     getInfo,
     updateInfo,
@@ -124,5 +139,6 @@ module.exports = {
     listAccounts,
     editAccount,
     memberSearch,
-    getTeamMember
+    getTeamMember,
+    deleteAccount
 }
