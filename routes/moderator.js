@@ -6,7 +6,7 @@ var eventController = require('../controllers/event.controller');
 // View user's list of event
 router.get('/lists', [authJwt.verifyToken], eventController.viewListEvent);
 // View event on calendar
-router.get('/home', [authJwt.verifyToken], eventController.viewCalendarEvent);
+router.get('/home', [authJwt.verifyToken], eventController.viewCalendarEvent); 
 router.get('/', [authJwt.verifyToken], eventController.viewCalendarEvent);
 // Setting
 router.get('/setting', [authJwt.verifyToken], accController.getInfo);
@@ -24,8 +24,8 @@ router.get('/event/create', authJwt.verifyToken, eventController.createEvent);
 // Delete event
 router.get('/event/delete', authJwt.verifyToken, eventController.deleteEvent);
 // Update event
-router.get('/event/update', authJwt.verifyToken, eventController.updateEvent);
-
+router.post('/event/update', authJwt.verifyToken, eventController.updateEvent);
+router.post('/event/counting', authJwt.verifyToken, eventController.counting);
 
 // Update info
 router.post('/setting/change-info', authJwt.verifyToken, accController.updateInfo);

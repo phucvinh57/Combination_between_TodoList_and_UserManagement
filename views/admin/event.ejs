@@ -194,55 +194,26 @@
             <span class="material-icons" id="close-counting">close</span>
         </div>
         <ul class="list-group" style="overflow-y: scroll; height: 77%; overflow-x: hidden; margin-bottom: 5px;">
-            <li class="list-group-item at">
-                <span>Nguyễn Phúc Vinh</span>
-                <div class="group-btn-at">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="aa1">
-                        <label class="custom-control-label" for="aa1"></label>
+            <% for(let i=0; i < attendees.length; i++) { %>
+                <li class="list-group-item at">
+                    <span><%= attendees[i].name %> </span>
+                    <div class="group-btn-at">
+                        <div class="custom-control custom-switch">
+                            <% if (attendees[i].attended) { %>
+                                <input type="checkbox" class="custom-control-input" id="<%= attendees[i].ID %>" checked>
+                            <% } else { %>
+                                <input type="checkbox" class="custom-control-input" id="<%= attendees[i].ID %>">
+                            <% } %>
+                            <label class="custom-control-label" for="<%= attendees[i].ID %>"></label>
+                        </div>
+
                     </div>
-                </div>
-            </li>
-            <li class="list-group-item at">
-                <span>Vũ Nguyễn Minh Huy</span>
-                <div class="group-btn-at">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="aa2">
-                        <label class="custom-control-label" for="aa2"></label>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item at">
-                <span>Cù Đỗ Thanh Nhân</span>
-                <div class="group-btn-at">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="aa3">
-                        <label class="custom-control-label" for="aa3"></label>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item at">
-                <span>Ngô Minh Hồng Thái</span>
-                <div class="group-btn-at">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="aa4">
-                        <label class="custom-control-label" for="aa4"></label>
-                    </div>
-                </div>
-            </li>
-            <li class="list-group-item at">
-                <span>Trương Quý Phát</span>
-                <div class="group-btn-at">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="aa5">
-                        <label class="custom-control-label" for="aa5"></label>
-                    </div>
-                </div>
-            </li>
+                </li>
+            <% } %>
         </ul>
         <div style="display: flex;justify-content: space-between; align-items: center; margin: 0 20px 20px 0;">
             <div></div>
-            <input type="submit" name="roll_call" role="button" class="btn btn-info">
+            <input type="submit" name="roll_call" role="button" class="btn btn-info" id="counting-attendances">
         </div>
 
     </div>
@@ -447,10 +418,27 @@
                 },
                 function (data) {
                     alert(data.msg);
-                    //window.location.replace('http://localhost:3000/admin');
-                    //window.location.reload();
+                    window.location.replace('http://localhost:3000/admin');
                 });
         });
+        $('#counting-attendances').on('click', function() {
+            var counting = [];
+            $('.custom-control-input').each(function(index, elem) {
+                counting.push({
+                    attended: elem.checked,
+                    ID: parseInt(elem.id)
+                });
+            })
+            var data = {};
+            data.ID = parseInt('<%= event.ID %>');
+            data.counting = counting
+            $.post('event/counting', {
+                data: JSON.stringify(data),
+            }, function() {
+                $('#close-counting').click();
+                console.log('sasxz');
+            })
+        })
     </script>
 </body>
 

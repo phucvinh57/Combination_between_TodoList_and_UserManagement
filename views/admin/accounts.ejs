@@ -91,6 +91,7 @@
                             <td>
                                 <%= user[i].ID %>
                             </td>
+                            <!-- <td style="display: none;"><%= user[i].username %> </td> -->
                             <td>
                                 <%= user[i].name %>
                             </td>
@@ -109,7 +110,7 @@
                 <tfoot>
                     <tr>
                         <th>ID</th>
-                        <th>Mame</th>
+                        <th>Name</th>
                         <th>Phone number</th>
                         <th>Preference</th>
                         <th>Role</th>
@@ -123,30 +124,64 @@
             <img src="/images/img_avatar.png" alt="Avatar" id="avatar">
             <span id="name"></span>
         </div>
-        <div id="right-card">
+        <form id="right-card">
+            <div class="form-group">
+                <label for="aname">Name:</label>
+                <input type="text" class="form-control" id="aname" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" class="form-control" id="email" value="" required>
+            </div>
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" value="Nguyen Phuc Vinh">
+                <input type="text" class="form-control" id="username" value="" required>
             </div>
             <div class="form-group">
                 <label for="password">Password:</label>
-                <input type="password" class="form-control" id="password" placeholder="******">
+                <input type="password" class="form-control" id="password" placeholder="******" required>
             </div>
             <div class="form-group">
                 <label for="role">Role</label>
                 <select class="form-control" id="role">
-                    <option>User</option>
-                    <option>Admin</option>
-                    <option>Moderator</option>
+                    <option value="user">user</option>
+                    <option value="mod">mod</option>
                 </select>
             </div>
             <div id="button">
-                <button type="button" class="btn btn-info" id="edit">Edit</button>
-                <button type="button" class="btn btn-light" id="discard">Discard</button>
-                <button type="button" class="btn btn-info" id="save">Save</button>
+                <button type="button" class="btn btn-info" id="edit" style="font-weight: bold;">Edit</button>
+                <button type="button" class="btn btn-danger" id="delete" style="font-weight: bold;" value="">Delete</button>
+                <button type="button" class="btn btn-light" id="discard" style="font-weight: bold;">Discard</button>
+                <button type="submit" class="btn btn-info" id="save" style="font-weight: bold;">Save</button>
+            </div>
+        </form>
+        <span class="material-icons" id="close-card">clear</span>
+    </div>
+
+    <div id="create-account">
+        <div class="create-header">Create new account</div>
+        <div id="body">
+            <div class="form-group">
+                <label for="uname">Username:</label>
+                <input type="text" id="uname" placeholder="" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="psw">Password:</label>
+                <input type="password" id="psw" placeholder="*****" required class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="urole">Role</label>
+                <select class="form-control" id="urole">
+                    <option value="user">user</option>
+                    <option value="mod">mod</option>
+                </select>
+            </div>
+            <!-- <span class="material-icons" id="close-create">clear</span> -->
+            <div style="display: flex; justify-content: space-between;align-items: center;">
+                <button class="btn btn-light" id="cancel-create" style="font-weight: bold;">Cancel</button>
+                <button class="btn btn-info" id="create" style="font-weight: bold;">Create</button>
             </div>
         </div>
-        <span class="material-icons" id="close-card">clear</span>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -159,6 +194,7 @@
         $('#user-card').hide();
         $('#save').hide();
         $('#discard').hide();
+        $('#save').prop('disabled', true);
         $('.form-group select, .form-group input').prop('disabled', true);
         var table = $('#account-table').DataTable({
             'aoColumnDefs': [{
@@ -174,18 +210,30 @@
         $('.paginate_button a').css('color', 'white');
         $('#account-table tbody').on('click', 'tr', function () {
             var data = table.row(this).data();
-            console.log(data[1]);
+            console.log(data[0]);
             $('#user-card').show();
-            $('#name').text(data[1]);
+            $('#aname').val(data[1]);
             $('.main-content').css('filter', 'blur(5px)');
+            $('#delete').val(data[0]);
+            $('#role').val(data[4]);
+            $.get('accounts/user', {
+                ID: data[0]
+            }, function(data) {
+                $('#username').val(data.user.username);
+                $('#email').val(data.user.email);
+            });
+            
         });
         $('#close-card').click(function () {
+            $('#discard').click();
             $('#user-card').hide();
             $('.main-content').css('filter', 'blur(0px)');
         });
+        
         $('#edit').on('click', function(){
             $('.form-group select, .form-group input').prop('disabled', false);
             $('#discard').show();
+            $('#delete').hide();
             $('#save').show();
             $('#edit').hide()
         });
@@ -194,17 +242,59 @@
             $('#edit').show();
             $('#save').hide();
             $('#discard').hide()
+            $('#delete').show();
         });
         $('#save').on('click', function() {
+            var username = $('#username').val()
             $.post('accounts/edit', {
-                    username: $('#username').val(),
-                    password: $('#password').val(), 
-                    role: $('#role').val()
-                }, function(data) {
-                    alert(data.msg)
-                });
+                ID: $('#delete').val(),
+                username: $('#username').val(),
+                password: $('#password').val(), 
+                role: $('#role').val()
+            }, function(data) {
+                alert(data.msg);
+            });
         })
-
+        $('#username').keyup(function() {
+            if($('#username').val() != '' && $('#password').val() != '') {
+                $('#save').prop('disabled', false);
+            }
+            else $('#save').prop('disabled', true);
+        })
+        $('#password').keyup(function() {
+            if($('#username').val() != '' && $('#password').val() != '') {
+                $('#save').prop('disabled', false);
+            }
+            else $('#save').prop('disabled', true);
+        })
+        $("#delete").on('click', function() {
+            $.post('accounts/delete', {
+                ID: $('#delete').val()
+            }, function(data) {
+                console.log(data.msg);
+                window.location.replace('http://localhost:3000/admin/accounts');
+            })
+        })
+        $('#create-account').hide();
+        $("#add-item-btn").on('click', function() {
+            $('.form-group select, .form-group input').prop('disabled', false);
+            $('#create-account').show();
+            $('.main-content').css('filter', 'blur(5px)');
+        })
+        $('#cancel-create').on('click', function() {
+            $('#create-account').hide();
+            $('.form-group select, .form-group input').prop('disabled', true);
+            $('.main-content').css('filter', '');
+        })
+        $('#create').on('click', function() {
+            $.post('accounts/create', {
+                password: $('#psw').val(),
+                username: $('#uname').val(),
+                role: $('#urole').val()
+            }, function(data) {
+                window.location.reload('http://localhost:3000/admin/accounts')
+            })
+        })
     </script>
 </body>
 

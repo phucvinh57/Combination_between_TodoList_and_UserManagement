@@ -54,7 +54,25 @@ var changePassword = function(req, res) {
 }
 
 var createAccount = function(req, res) {
-
+    let user = {}
+    user.ID = data.user[data.user.length - 1].ID + 1;
+    user.username = req.body.username;
+    user.password = req.body.password;
+    user.role = req.body.role;
+    let user_info = {
+        "ID": user.ID,
+        "email": "",
+        "name": "",
+        "birthday": "",
+        "phone-number": "",
+        "github": "",
+        "preference": ""
+    };
+    data.user.push(user);
+    data.user_info.push(user_info);
+    fs.writeFileSync('./mockdb/user.json', JSON.stringify(data.user));
+    fs.writeFileSync('./mockdb/user_info.json', JSON.stringify(data.user_info));
+    res.send({msg: "Create successfully"});
 }
 
 var updateInfo = function(req, res) {
@@ -75,11 +93,19 @@ var listAccounts = function(req, res) {
     let user = JSON.parse(JSON.stringify(data.user_info));
     data.user.forEach(function(value, index) {
         user[index].role = value.role;
+        user[index].username = value.username;
     });
     var username;
     data.user_info.find(function(value) {
         if(value.ID == req.accID) {
             username = value.name;
+            return true;
+        }
+        return false;
+    })
+    user.find(function(value, index) {
+        if(value.role == 'admin') {
+            user.splice(index, 1);
             return true;
         }
         return false;
@@ -93,8 +119,9 @@ var listAccounts = function(req, res) {
 
 var editAccount = function(req, res) {
     data.user.find(function(value, index) {
-        if(req.accID == value.ID) {
+        if(req.body.ID == value.ID) {
             data.user[index].role = req.body.role.toLowerCase(); 
+            if(data.user[index].role == 'moderator') data.user[index].role = 'mod'
             data.user[index].password = req.body.password;
             data.user[index].username = req.body.username;
             return true;
@@ -102,7 +129,7 @@ var editAccount = function(req, res) {
         return false;
     });
     fs.writeFileSync('./mockdb/user.json', JSON.stringify(data.user));
-    res.send({msg: "WTF ???"})
+    res.send({msg: "Edit oke"})
 }
 var memberSearch = function(req, res) {
     let queryString = req.query.value.toUpperCase();
@@ -122,14 +149,65 @@ var memberSearch = function(req, res) {
 }
 
 var getTeamMember = function(req, res) {
-    var attendees = data.user_info.filter(function(value, index) {
+    var mod_user_ID = [];
+    data.user.filter(function (value) {
+        if (value.role == 'admin' || value.role == 'mod') {
+            mod_user_ID.push(value.ID);
+            return true;
+        }
+        return false;
+    });
+    var att = data.user_info.filter(function(value, index) {
         return value.preference == req.query.preference;
     })
+    console.log(mod_user_ID);
+    var attendees = JSON.parse(JSON.stringify(att));
+    attendees = attendees.filter(function(value, index) {
+        return !mod_user_ID.includes(value.ID);
+    })
+    console.log(attendees);
     res.send({ attendees: attendees});
 }
 
 var deleteAccount = function(req, res) {
+    var ID = parseInt(req.body.ID);
+    data.user.find(function(value, index) {
+        if(value.ID == ID) {
+            data.user.splice(index, 1);
+            console.log(value.ID);
+            return true;
+        }
+        return false
+    });
+    data.user_info.find(function(value, index) {
+        if(value.ID == ID) {
+            data.user_info.splice(index, 1);
+            return true;
+        }
+        return false;
+    });
+    data.join = data.join.filter(function(value) {
+        return value.userID != ID;
+    });
+    fs.writeFileSync('./mockdb/user.json', JSON.stringify(data.user));
+    fs.writeFileSync('./mockdb/user_info.json', JSON.stringify(data.user_info));
+    fs.writeFileSync('./mockdb/join.json', JSON.stringify(join.user));
+    res.send({msg: "You have delete an account !"})
+}
 
+var getMember = function(req, res) {
+    console.log(req.query.ID);
+    var ID = parseInt(req.query.ID);
+    var user_info = data.user_info.find(function(val) {
+        return val.ID == ID;
+    })
+    data.user.find(function(val) {
+        if(user_info.ID == val.ID) {
+            user_info.username = val.username;
+        } 
+    })
+    console.log(user_info);
+    res.send({user: user_info});
 }
 
 module.exports = {
@@ -140,5 +218,7 @@ module.exports = {
     editAccount,
     memberSearch,
     getTeamMember,
-    deleteAccount
+    deleteAccount,
+    createAccount,
+    getMember
 }

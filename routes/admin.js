@@ -16,7 +16,10 @@ router.get('/event', [authJwt.verifyToken], eventController.viewEvent);
 router.get('/accounts', authJwt.verifyToken, accController.listAccounts);
 // Admin change account property
 router.post('/accounts/edit', authJwt.verifyToken, accController.editAccount);
-
+// Delete account
+router.post('/accounts/delete', authJwt.verifyToken, accController.deleteAccount);
+// Create account
+router.post('/accounts/create', authJwt.verifyToken, accController.createAccount);
 // Get event form
 router.get('/event/create-form', authJwt.verifyToken, eventController.createEventForm);
 //Create event
@@ -25,6 +28,8 @@ router.post('/event/create', authJwt.verifyToken, eventController.createEvent);
 router.get('/event/delete', authJwt.verifyToken, eventController.deleteEvent);
 // Update event
 router.post('/event/update', authJwt.verifyToken, eventController.updateEvent);
+router.post('/event/counting', authJwt.verifyToken, eventController.counting);
+router.get('/accounts/user', authJwt.verifyToken, accController.getMember);
 
 router.get('/event/member-search', authJwt.verifyToken, accController.memberSearch);
 router.get('/event/get-team', authJwt.verifyToken, accController.getTeamMember);

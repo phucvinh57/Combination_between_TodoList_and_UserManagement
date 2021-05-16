@@ -75,6 +75,9 @@ if(addTimeBtn != null) addTimeBtn.onclick = function () {
         deleteBtn.className = 'material-icons delete';
         deleteBtn.innerText = 'clear';
         
+        // var vote = document.createElement('span');
+        // vote.className = 'number-vote';
+
         newTime.className ='list-group-item time';
         newTime.appendChild(content);
         newTime.appendChild(deleteBtn);
